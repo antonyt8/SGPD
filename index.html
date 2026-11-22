@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Acesso ao Sistema • SGPD</title>
+    <!-- CSS Base & Responsividade Garantida -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Tailwind CSS CDN para Utilitários -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 flex flex-col min-h-screen">
+
+    <!-- Barra Governamental Superior -->
+    <div class="gov-top-bar">
+        <div class="gov-top-bar-inner">
+            <div class="gov-brand">
+                <span class="gov-flag-dot"></span>
+                <span>BRASIL</span>
+                <span style="opacity: 0.5; margin: 0 4px;">|</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+            </div>
+            <div style="font-size: 0.7rem; color: #94a3b8;">
+                <i class="fa-solid fa-shield-halved text-emerald-400"></i> Ambiente Homologado SGPD
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo Centralizado de Login -->
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8">
+            
+            <!-- Logo & Cabeçalho -->
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/25 text-2xl font-bold">
+                    <i class="fa-solid fa-folder-tree"></i>
+                </div>
+                <span class="inline-block bg-blue-50 text-blue-700 font-bold px-3 py-1 rounded-full text-xs mb-1.5 border border-blue-200">
+                    PORTAL GOV.BR • SGPD
+                </span>
+                <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Gestão de Processos Digitais</h1>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">Acesso unificado para requerimentos e tramitação de benefícios funcionais</p>
+            </div>
+
+            <!-- Formulário de Login -->
+            <form onsubmit="realizarLogin(event)" class="space-y-4">
+                
+                <div class="form-group mb-3">
+                    <label class="form-label text-xs uppercase font-bold text-slate-600">Selecione o Perfil de Demonstração</label>
+                    <select id="login-role" onchange="atualizarPerfilPreenchido()" class="form-control font-medium">
+                        <option value="servidor">Servidor Público Requerente (Antony Thiago - TI)</option>
+                        <option value="rh">Analista de Gestão de Pessoas (Dra. Mariana Costa - RH)</option>
+                        <option value="gestor">Chefia Imediata / Diretor (Dr. Carlos Drummond)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="form-label text-xs uppercase font-bold text-slate-600">Matrícula SIAPE</label>
+                        <input id="login-matricula" type="text" value="50463357" readonly class="form-control font-mono font-bold bg-slate-50 text-slate-700" />
+                    </div>
+                    <div>
+                        <label class="form-label text-xs uppercase font-bold text-slate-600">Lotação Funcional</label>
+                        <input id="login-lotacao" type="text" value="DTI / PROPLAN" readonly class="form-control bg-slate-50 text-slate-700 font-medium" />
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="form-label text-xs uppercase font-bold text-slate-600">Autenticação Única</label>
+                    <div class="relative">
+                        <input type="password" value="••••••••••••" readonly class="form-control bg-slate-50 text-slate-600" />
+                        <span class="absolute right-3 top-2.5 text-xs text-emerald-600 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check"></i> Gov.br Ouro
+                        </span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full py-3 text-sm font-bold shadow-md shadow-blue-600/20">
+                    <span>Acessar Plataforma</span>
+                    <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                </button>
+            </form>
+
+            <!-- Acesso Rápido Alternativo -->
+            <div class="mt-6 pt-5 border-t border-slate-200">
+                <span class="text-xs text-slate-400 block text-center mb-3">Ou navegue diretamente pelo perfil:</span>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="acessarDireto('servidor')" type="button" class="btn btn-secondary text-xs py-2">
+                        <i class="fa-solid fa-user text-blue-600"></i> Servidor
+                    </button>
+                    <button onclick="acessarDireto('rh')" type="button" class="btn btn-secondary text-xs py-2">
+                        <i class="fa-solid fa-user-shield text-indigo-600"></i> Analista RH
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-[11px] text-slate-400 text-center mt-6">
+                Em conformidade com a <strong>Lei 14.129/2021</strong> (Governo Digital).
+            </p>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        function atualizarPerfilPreenchido() {
+            const role = document.getElementById('login-role').value;
+            const mat = document.getElementById('login-matricula');
+            const lot = document.getElementById('login-lotacao');
+
+            if (role === 'servidor') {
+                mat.value = '50463357';
+                lot.value = 'DTI / PROPLAN';
+            } else if (role === 'rh') {
+                mat.value = '2098412';
+                lot.value = 'DGP / CGBEN';
+            } else {
+                mat.value = '1049921';
+                lot.value = 'GAB / DIRETORIA';
+            }
+        }
+
+        function realizarLogin(e) {
+            e.preventDefault();
+            const role = document.getElementById('login-role').value;
+            acessarDireto(role);
+        }
+
+        function acessarDireto(role) {
+            SGPD.setPerfil(role);
+            if (role === 'servidor') {
+                window.location.href = 'servidor.html';
+            } else {
+                window.location.href = 'rh.html';
+            }
+        }
+    </script>
+</body>
+</html>
