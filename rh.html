@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -9,8 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="bg-slate-100 flex flex-col min-h-screen">
 
     <!-- Barra Governamental Superior -->
@@ -20,11 +24,14 @@
                 <span class="gov-flag-dot"></span>
                 <span>BRASIL</span>
                 <span style="opacity: 0.5; margin: 0 4px;">|</span>
-                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços
+                    Públicos</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="SGPD.resetarDados()" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
-                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar Demonstração</span>
+                <button onclick="SGPD.resetarDados()"
+                    class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar
+                        Demonstração</span>
                 </button>
             </div>
         </div>
@@ -34,8 +41,7 @@
     <header class="app-navbar">
         <div class="sgpd-container">
             <div class="app-navbar-inner">
-                
-                <!-- Logo & Brand -->
+
                 <a href="rh.html" class="app-brand">
                     <div class="app-logo-icon" style="background: linear-gradient(135deg, #4338ca, #312e81);">
                         <i class="fa-solid fa-user-shield"></i>
@@ -43,13 +49,13 @@
                     <div>
                         <div class="app-brand-title">
                             <span>SGPD</span>
-                            <span class="app-brand-badge" style="background-color: #e0e7ff; color: #4338ca;">Gestão de Pessoas</span>
+                            <span class="app-brand-badge" style="background-color: #e0e7ff; color: #4338ca;">Gestão de
+                                Pessoas</span>
                         </div>
                         <div class="app-brand-subtitle hidden sm:block">Coordenação de Benefícios & Seguridade</div>
                     </div>
                 </a>
 
-                <!-- Navegação Desktop -->
                 <nav class="nav-links-desktop">
                     <a href="rh.html" class="nav-link active">
                         <i class="fa-solid fa-inbox"></i>
@@ -57,27 +63,39 @@
                     </a>
                     <a href="servidor.html" class="nav-link">
                         <i class="fa-solid fa-user"></i>
-                        <span>Visão Servidor</span>
+                        <span>Servidor</span>
+                    </a>
+                    <a href="gestor.html" class="nav-link">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Chefia</span>
+                    </a>
+                    <a href="guia.html" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>Guia</span>
                     </a>
                 </nav>
 
-                <!-- Controles do Usuário -->
                 <div class="user-controls">
                     <div class="quick-switcher">
                         <button onclick="SGPD.alternarPerfil('servidor')" class="quick-switch-btn">Servidor</button>
                         <button onclick="SGPD.alternarPerfil('rh')" class="quick-switch-btn active">RH</button>
+                        <button onclick="SGPD.alternarPerfil('gestor')" class="quick-switch-btn">Chefia</button>
                     </div>
+
+                    <div id="notif-container"></div>
 
                     <div class="hidden sm:block text-right">
                         <div class="text-xs font-bold text-slate-800 leading-tight">Dra. Mariana Costa</div>
                         <div class="text-[10px] text-indigo-600 font-medium">SIAPE: 2098412 • DGP</div>
                     </div>
 
-                    <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs border border-indigo-200">
+                    <div
+                        class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs border border-indigo-200">
                         MC
                     </div>
 
-                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition" title="Sair do Sistema">
+                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition"
+                        title="Sair do Sistema">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
 
@@ -89,7 +107,6 @@
             </div>
         </div>
 
-        <!-- Drawer Mobile -->
         <div id="mobile-drawer" class="mobile-nav-drawer">
             <div class="border-b border-slate-200 pb-2 mb-2">
                 <div class="text-xs font-bold text-slate-800">Dra. Mariana Costa Rangel</div>
@@ -99,7 +116,13 @@
                 <i class="fa-solid fa-inbox text-indigo-600"></i> Fila de Análise RH
             </a>
             <a href="servidor.html" class="mobile-nav-link">
-                <i class="fa-solid fa-user text-blue-600"></i> Alternar para Painel do Servidor
+                <i class="fa-solid fa-user text-blue-600"></i> Painel do Servidor
+            </a>
+            <a href="gestor.html" class="mobile-nav-link">
+                <i class="fa-solid fa-user-tie text-emerald-700"></i> Painel da Chefia
+            </a>
+            <a href="guia.html" class="mobile-nav-link">
+                <i class="fa-solid fa-book-bookmark text-amber-600"></i> Guia de Benefícios
             </a>
             <div class="pt-2 border-t border-slate-200 mt-2">
                 <button onclick="SGPD.logout()" class="btn btn-secondary w-full text-xs text-rose-600">
@@ -114,14 +137,18 @@
         <div class="sgpd-container space-y-6">
 
             <!-- Banner do RH -->
-            <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl p-5 sm:p-7 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div
+                class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl p-5 sm:p-7 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-200 border border-indigo-400/30 text-xs font-semibold mb-2">
+                    <div
+                        class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-200 border border-indigo-400/30 text-xs font-semibold mb-2">
                         <i class="fa-solid fa-user-shield"></i> Divisão de Gestão de Pessoas (DGP/CGBEN)
                     </div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Fila de Instrução e Despacho de Processos</h1>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Fila de Instrução e Despacho de
+                        Processos</h1>
                     <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
-                        Audite certidões comprobatórias, exija diligências de saneamento ou emita o parecer decisório com assinatura eletrônica.
+                        Audite certidões comprobatórias, exija diligências de saneamento ou emita o parecer decisório
+                        com assinatura eletrônica.
                     </p>
                 </div>
                 <button onclick="exportarCSV()" class="btn btn-secondary text-xs w-full sm:w-auto">
@@ -170,45 +197,81 @@
                 </div>
             </div>
 
-            <!-- Filtros & Busca -->
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3">
-                <!-- Filtros em Pills -->
-                <div class="flex flex-wrap items-center gap-1.5">
-                    <button onclick="filtrar('todos')" id="btn-filtro-todos" class="btn btn-primary btn-sm text-xs">
-                        Todos (<span id="cont-todos">0</span>)
-                    </button>
-                    <button onclick="filtrar('Em Análise')" id="btn-filtro-analise" class="btn btn-secondary btn-sm text-xs">
-                        Aguardando Parecer (<span id="cont-analise">0</span>)
-                    </button>
-                    <button onclick="filtrar('Em Diligência')" id="btn-filtro-diligencia" class="btn btn-secondary btn-sm text-xs">
-                        Em Diligência (<span id="cont-diligencia">0</span>)
-                    </button>
-                    <button onclick="filtrar('Concluidos')" id="btn-filtro-concluidos" class="btn btn-secondary btn-sm text-xs">
-                        Concluídos (<span id="cont-concluidos">0</span>)
-                    </button>
+                <!-- Resumo Analítico da Fila -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                        <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-simple text-indigo-600"></i> Distribuição de Demandas por
+                            Benefício
+                        </h2>
+                        <span id="taxa-deferimento"
+                            class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                            Taxa de Deferimento: 100%
+                        </span>
+                    </div>
+                    <div id="analytics-bars" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                        <!-- Renderizado via JS -->
+                    </div>
                 </div>
 
-                <!-- Campo de Busca -->
-                <div class="relative w-full md:w-64">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                    <input id="busca-rh" oninput="renderizarRH()" type="text" placeholder="Buscar por NUP, servidor..."
-                        class="form-control pl-8 text-xs py-1.5 w-full" />
+                <!-- Filtros, Tipo de Benefício, Ordenação & Busca -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <button onclick="filtrar('todos')" id="btn-filtro-todos" class="btn btn-primary btn-sm text-xs">
+                            Todos (<span id="cont-todos">0</span>)
+                        </button>
+                        <button onclick="filtrar('Em Análise')" id="btn-filtro-analise"
+                            class="btn btn-secondary btn-sm text-xs">
+                            Aguardando Parecer (<span id="cont-analise">0</span>)
+                        </button>
+                        <button onclick="filtrar('Em Diligência')" id="btn-filtro-diligencia"
+                            class="btn btn-secondary btn-sm text-xs">
+                            Em Diligência (<span id="cont-diligencia">0</span>)
+                        </button>
+                        <button onclick="filtrar('Concluidos')" id="btn-filtro-concluidos"
+                            class="btn btn-secondary btn-sm text-xs">
+                            Concluídos (<span id="cont-concluidos">0</span>)
+                        </button>
+                    </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100">
+                            <div class="relative">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                                <input id="busca-rh" oninput="renderizarRH()" type="text"
+                                    placeholder="Buscar por NUP, servidor..."
+                                    class="form-control pl-8 text-xs py-1.5 w-full" />
+                            </div>
+                            <select id="filtro-beneficio-rh" onchange="renderizarRH()"
+                                class="form-control text-xs py-1.5 font-medium">
+                                <option value="todos">Todos os Benefícios</option>
+                                <option value="Auxílio-Transporte">Auxílio-Transporte</option>
+                                <option value="Adicional de Qualificação">Adicional de Qualificação</option>
+                                <option value="Licença Capacitação">Licença Capacitação</option>
+                                <option value="Auxílio-Alimentação">Auxílio-Alimentação</option>
+                                <option value="Auxílio-Natalidade / Creche">Auxílio-Natalidade / Creche</option>
+                            </select>
+                            <select id="ordenacao-rh" onchange="renderizarRH()"
+                                class="form-control text-xs py-1.5 font-medium">
+                                <option value="recentes">Ordenar: Mais recentes</option>
+                                <option value="urgentes">Ordenar: Urgentes primeiro</option>
+                                <option value="antigos">Ordenar: Mais antigos (SLA)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Processos da Fila -->
+                    <div id="lista-processos-rh" class="space-y-3"></div>
+
+                    <!-- Estado Vazio -->
+                    <div id="estado-vazio-rh"
+                        class="hidden bg-white p-12 rounded-2xl border border-slate-200 text-center text-slate-400">
+                        <i class="fa-solid fa-clipboard-check text-4xl mb-2 text-slate-300"></i>
+                        <p class="font-bold text-slate-700 text-base">Fila limpa ou nenhum registro encontrado</p>
+                        <p class="text-xs">Não há processos pendentes com os critérios de filtro selecionados.</p>
+                    </div>
+
                 </div>
-            </div>
-
-            <!-- Lista de Processos da Fila -->
-            <div id="lista-processos-rh" class="space-y-3">
-                <!-- Renderizado via JS -->
-            </div>
-
-            <!-- Estado Vazio -->
-            <div id="estado-vazio-rh" class="hidden bg-white p-12 rounded-2xl border border-slate-200 text-center text-slate-400">
-                <i class="fa-solid fa-clipboard-check text-4xl mb-2 text-slate-300"></i>
-                <p class="font-bold text-slate-700 text-base">Fila limpa ou nenhum registro encontrado</p>
-                <p class="text-xs">Não há processos pendentes com os critérios de filtro selecionados.</p>
-            </div>
-
-        </div>
     </main>
 
     <!-- MODAL DE DESPACHO OFICIAL DO RH -->
@@ -219,7 +282,8 @@
                     <h3 class="text-base font-bold flex items-center gap-2">
                         <i class="fa-solid fa-stamp text-indigo-400"></i> Emissão de Despacho Administrativo
                     </h3>
-                    <p id="modal-nup-label" class="text-xs text-slate-400 font-mono mt-0.5">Processo NUP: SGPD-2026-0000</p>
+                    <p id="modal-nup-label" class="text-xs text-slate-400 font-mono mt-0.5">Processo NUP: SGPD-2026-0000
+                    </p>
                 </div>
                 <button onclick="fecharModalDespacho()" class="text-slate-400 hover:text-white text-xl">
                     <i class="fa-solid fa-xmark"></i>
@@ -229,26 +293,32 @@
             <form onsubmit="confirmarDespacho(event)" class="p-5 sm:p-6 space-y-4">
                 <input type="hidden" id="modal-processo-id" />
 
-                <!-- Seleção da Decisão -->
                 <div>
-                    <label class="form-label text-xs uppercase font-bold text-slate-600">Decisão Administrativa <span class="required">*</span></label>
+                    <label class="form-label text-xs uppercase font-bold text-slate-600">Decisão Administrativa <span
+                            class="required">*</span></label>
                     <div class="grid grid-cols-3 gap-2">
-                        <label class="flex flex-col p-2.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50">
-                            <input type="radio" name="decisao" value="Aprovado" checked onchange="aoMudarDecisao()" class="hidden" />
+                        <label
+                            class="flex flex-col p-2.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50">
+                            <input type="radio" name="decisao" value="Aprovado" checked onchange="aoMudarDecisao()"
+                                class="hidden" />
                             <span class="text-emerald-700 font-bold text-xs flex items-center gap-1 mb-0.5">
                                 <i class="fa-solid fa-circle-check"></i> Deferir
                             </span>
                             <span class="text-[10px] text-slate-500">Aprovar benefício</span>
                         </label>
-                        <label class="flex flex-col p-2.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-amber-500 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50">
-                            <input type="radio" name="decisao" value="Em Diligência" onchange="aoMudarDecisao()" class="hidden" />
+                        <label
+                            class="flex flex-col p-2.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-amber-500 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50">
+                            <input type="radio" name="decisao" value="Em Diligência" onchange="aoMudarDecisao()"
+                                class="hidden" />
                             <span class="text-amber-700 font-bold text-xs flex items-center gap-1 mb-0.5">
                                 <i class="fa-solid fa-triangle-exclamation"></i> Diligência
                             </span>
                             <span class="text-[10px] text-slate-500">Exigir correções</span>
                         </label>
-                        <label class="flex flex-col p-2.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-rose-500 transition has-[:checked]:border-rose-600 has-[:checked]:bg-rose-50">
-                            <input type="radio" name="decisao" value="Indeferido" onchange="aoMudarDecisao()" class="hidden" />
+                        <label
+                            class="flex flex-col p-2.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-rose-500 transition has-[:checked]:border-rose-600 has-[:checked]:bg-rose-50">
+                            <input type="radio" name="decisao" value="Indeferido" onchange="aoMudarDecisao()"
+                                class="hidden" />
                             <span class="text-rose-700 font-bold text-xs flex items-center gap-1 mb-0.5">
                                 <i class="fa-solid fa-ban"></i> Indeferir
                             </span>
@@ -257,33 +327,36 @@
                     </div>
                 </div>
 
-                <!-- Modelos Rápidos de Parecer -->
                 <div>
                     <span class="text-[11px] font-bold text-slate-500 block mb-1">Modelos Rápidos de Parecer:</span>
                     <div class="flex flex-wrap gap-1.5">
-                        <button type="button" onclick="aplicarModelo('deferir')" class="btn btn-secondary btn-sm text-[11px] py-1">
+                        <button type="button" onclick="aplicarModelo('deferir')"
+                            class="btn btn-secondary btn-sm text-[11px] py-1">
                             Deferimento Regular
                         </button>
-                        <button type="button" onclick="aplicarModelo('diligencia')" class="btn btn-secondary btn-sm text-[11px] py-1">
+                        <button type="button" onclick="aplicarModelo('diligencia')"
+                            class="btn btn-secondary btn-sm text-[11px] py-1">
                             Diligência de Documento
                         </button>
-                        <button type="button" onclick="aplicarModelo('indeferir')" class="btn btn-secondary btn-sm text-[11px] py-1">
+                        <button type="button" onclick="aplicarModelo('indeferir')"
+                            class="btn btn-secondary btn-sm text-[11px] py-1">
                             Indeferimento Formal
                         </button>
                     </div>
                 </div>
 
-                <!-- Parecer Oficial -->
                 <div class="form-group mb-0">
-                    <label class="form-label text-xs uppercase font-bold text-slate-600">Fundamentação Técnica / Parecer <span class="required">*</span></label>
+                    <label class="form-label text-xs uppercase font-bold text-slate-600">Fundamentação Técnica / Parecer
+                        <span class="required">*</span></label>
                     <textarea id="modal-parecer-texto" required rows="4" class="form-control text-xs leading-relaxed"
                         placeholder="Redija a motivação fática e jurídica da decisão..."></textarea>
                 </div>
 
-                <!-- Assinatura Digital do Analista -->
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-xs">
+                <div
+                    class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-xs">
                     <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-[10px]">
+                        <div
+                            class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-[10px]">
                             MC
                         </div>
                         <div>
@@ -291,16 +364,15 @@
                             <span class="text-[10px] text-slate-500">Analista RH • SIAPE 2098412</span>
                         </div>
                     </div>
-                    <span class="text-emerald-700 font-bold text-[10px] flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    <span
+                        class="text-emerald-700 font-bold text-[10px] flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                         <i class="fa-solid fa-signature"></i> Assinatura Gov.br
                     </span>
                 </div>
 
-                <!-- Ações do Modal -->
                 <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="fecharModalDespacho()" class="btn btn-secondary text-xs">
-                        Cancelar
-                    </button>
+                    <button type="button" onclick="fecharModalDespacho()"
+                        class="btn btn-secondary text-xs">Cancelar</button>
                     <button type="submit" class="btn btn-primary text-xs font-bold" style="background-color: #4338ca;">
                         <i class="fa-solid fa-stamp"></i> Assinar e Publicar Despacho
                     </button>
@@ -309,7 +381,13 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <footer class="app-footer">
+        <div class="sgpd-container flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span><strong>SGPD v3.0</strong> — Sistema de Gestão de Processos Digitais</span>
+            <span>Conformidade Lei nº 14.129/2021 • Dados persistidos localmente</span>
+        </div>
+    </footer>
+
     <script src="js/app.js"></script>
     <script>
         let filtroAtivo = 'todos';
@@ -324,9 +402,7 @@
 
             ['todos', 'analise', 'diligencia', 'concluidos'].forEach(f => {
                 const b = document.getElementById(`btn-filtro-${f}`);
-                if (b) {
-                    b.className = 'btn btn-secondary btn-sm text-xs';
-                }
+                if (b) b.className = 'btn btn-secondary btn-sm text-xs';
             });
 
             if (st === 'todos') document.getElementById('btn-filtro-todos').className = 'btn btn-primary btn-sm text-xs';
@@ -337,32 +413,78 @@
             renderizarRH();
         }
 
+        function alternarUrgencia(id) {
+            const p = SGPD.togglePrioridade(id);
+            if (p) {
+                SGPD.toast(`Prioridade de ${p.protocolo} alterada para ${p.prioridade}.`, 'info');
+                renderizarRH();
+            }
+        }
+
+        function renderizarAnalytics(processos) {
+            const total = processos.length || 1;
+            const aprovados = processos.filter(p => p.status === 'Aprovado').length;
+            const indeferidos = processos.filter(p => p.status === 'Indeferido').length;
+            const decididos = aprovados + indeferidos;
+            const taxa = decididos > 0 ? Math.round((aprovados / decididos) * 100) : 100;
+
+            document.getElementById('taxa-deferimento').textContent = `Taxa de Deferimento: ${taxa}% (${aprovados}/${decididos || 0})`;
+
+            const contagem = {};
+            processos.forEach(p => {
+                contagem[p.beneficio] = (contagem[p.beneficio] || 0) + 1;
+            });
+
+            const bars = document.getElementById('analytics-bars');
+            const cores = ['bg-blue-600', 'bg-indigo-600', 'bg-amber-500', 'bg-emerald-600', 'bg-rose-500'];
+            bars.innerHTML = Object.entries(contagem).map(([nome, qtd], idx) => {
+                const pct = Math.round((qtd / total) * 100);
+                return `
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-semibold text-slate-700 truncate">${nome}</span>
+                            <span class="text-slate-500 font-mono">${qtd} (${pct}%)</span>
+                        </div>
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill ${cores[idx % cores.length]}" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         function renderizarRH() {
             const processos = SGPD.getProcessos();
             const busca = (document.getElementById('busca-rh')?.value || '').toLowerCase().trim();
+            const benFiltro = document.getElementById('filtro-beneficio-rh')?.value || 'todos';
+            const ordem = document.getElementById('ordenacao-rh')?.value || 'recentes';
 
             const total = processos.length;
             const emAnalise = processos.filter(p => p.status === 'Em Análise').length;
             const emDiligencia = processos.filter(p => p.status === 'Em Diligência').length;
             const concluidos = processos.filter(p => p.status === 'Aprovado' || p.status === 'Indeferido').length;
 
-            // Estatísticas
             document.getElementById('stat-rh-total').textContent = total;
             document.getElementById('stat-rh-analise').textContent = emAnalise;
             document.getElementById('stat-rh-diligencia').textContent = emDiligencia;
             document.getElementById('stat-rh-concluidos').textContent = concluidos;
 
-            // Contadores nos botões
             document.getElementById('cont-todos').textContent = total;
             document.getElementById('cont-analise').textContent = emAnalise;
             document.getElementById('cont-diligencia').textContent = emDiligencia;
             document.getElementById('cont-concluidos').textContent = concluidos;
+
+            renderizarAnalytics(processos);
 
             let lista = [...processos];
 
             if (filtroAtivo === 'Em Análise') lista = lista.filter(p => p.status === 'Em Análise');
             if (filtroAtivo === 'Em Diligência') lista = lista.filter(p => p.status === 'Em Diligência');
             if (filtroAtivo === 'Concluidos') lista = lista.filter(p => p.status === 'Aprovado' || p.status === 'Indeferido');
+
+            if (benFiltro !== 'todos') {
+                lista = lista.filter(p => p.beneficio === benFiltro);
+            }
 
             if (busca) {
                 lista = lista.filter(p =>
@@ -371,6 +493,12 @@
                     p.matricula.includes(busca) ||
                     p.beneficio.toLowerCase().includes(busca)
                 );
+            }
+
+            if (ordem === 'urgentes') {
+                lista.sort((a, b) => (b.prioridade === 'Urgente' ? 1 : 0) - (a.prioridade === 'Urgente' ? 1 : 0));
+            } else if (ordem === 'antigos') {
+                lista.sort((a, b) => SGPD.getSlaDias(b.data) - SGPD.getSlaDias(a.data));
             }
 
             const container = document.getElementById('lista-processos-rh');
@@ -384,27 +512,30 @@
 
             emptyEl.classList.add('hidden');
             container.innerHTML = lista.map(p => `
-                <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border ${p.prioridade === 'Urgente' ? 'border-rose-200' : 'border-slate-200'} hover:border-slate-300 transition flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div class="space-y-1.5 flex-1">
                         <div class="flex flex-wrap items-center gap-2">
                             <span class="font-mono font-bold text-slate-900 text-sm">${p.protocolo}</span>
                             <span class="${SGPD.getBadgeClass(p.status)} text-xs">
                                 ${SGPD.getStatusIcon(p.status)} ${p.status}
                             </span>
-                            <span class="text-xs text-slate-400 font-medium">Autuado em: ${p.data}</span>
+                            ${p.prioridade === 'Urgente' ? '<span class="badge-urgente"><i class="fa-solid fa-bolt"></i> Urgente</span>' : ''}
+                            <span class="text-xs text-slate-400 font-medium">Autuado: ${p.data} (${SGPD.getSlaDias(p.data)}d)</span>
                         </div>
                         <h3 class="text-sm font-bold text-slate-800">
                             ${p.beneficio} — <span class="text-slate-600 font-normal">${p.servidor} (SIAPE: ${p.matricula})</span>
                         </h3>
-                        <p class="text-xs text-slate-500 italic line-clamp-2">
-                            "${p.justificativa}"
-                        </p>
-                        <div class="flex items-center gap-3 pt-1 text-xs text-slate-500">
+                        <p class="text-xs text-slate-500 italic line-clamp-2">"${p.justificativa}"</p>
+                        <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-500">
                             <span><i class="fa-solid fa-building text-slate-400"></i> ${p.lotacao || 'DTI / PROPLAN'}</span>
                             <span><i class="fa-solid fa-paperclip text-slate-400"></i> ${p.docs ? p.docs.length : 1} anexo(s)</span>
+                            ${p.anuenciaChefia === false ? '<span class="text-amber-700 font-semibold"><i class="fa-solid fa-signature"></i> Sem anuência da chefia</span>' : ''}
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center gap-2 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-slate-100 justify-end">
+                        <button onclick="alternarUrgencia(${p.id})" class="btn btn-secondary btn-sm text-xs" title="Alternar Prioridade">
+                            <i class="fa-solid fa-bolt ${p.prioridade === 'Urgente' ? 'text-rose-600' : 'text-slate-400'}"></i>
+                        </button>
                         <a href="processo.html?id=${p.id}" class="btn btn-secondary btn-sm text-xs">
                             <i class="fa-regular fa-folder-open"></i> Ver Dossiê
                         </a>
@@ -422,7 +553,7 @@
 
             document.getElementById('modal-processo-id').value = p.id;
             document.getElementById('modal-nup-label').textContent = `Processo NUP: ${p.protocolo} • Requerente: ${p.servidor}`;
-            
+
             aplicarModelo('deferir');
             document.getElementById('modal-despacho').classList.add('active');
         }
@@ -465,29 +596,9 @@
                 if (r.checked) novoStatus = r.value;
             }
 
-            const p = SGPD.getProcessoPorId(id);
+            const p = SGPD.despacharProcesso(id, novoStatus, parecer);
             if (!p) return;
 
-            const agora = new Date();
-            const dataStr = agora.toLocaleDateString('pt-BR');
-            const horaStr = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-
-            p.status = novoStatus;
-            p.dataAtualizacao = `${dataStr} ${horaStr}`;
-            p.parecerRH = parecer;
-
-            let rotulo = 'Despacho Deferitório';
-            if (novoStatus === 'Em Diligência') rotulo = 'Exigência de Diligência';
-            if (novoStatus === 'Indeferido') rotulo = 'Despacho de Indeferimento';
-
-            p.timeline.unshift({
-                data: `${dataStr} ${horaStr}`,
-                autor: 'Dra. Mariana Costa (RH)',
-                acao: rotulo,
-                descricao: parecer
-            });
-
-            SGPD.salvarProcesso(p);
             fecharModalDespacho();
             renderizarRH();
             SGPD.toast(`Despacho publicado com sucesso! Processo: ${p.protocolo}`, 'sucesso');
@@ -495,14 +606,14 @@
 
         function exportarCSV() {
             const processos = SGPD.getProcessos();
-            let csv = "Protocolo;Servidor;Matrícula;Benefício;Data;Status\n";
+            let csv = "Protocolo;Servidor;Matrícula;Benefício;Data;Prioridade;Status\n";
             processos.forEach(p => {
-                csv += `"${p.protocolo}";"${p.servidor}";"${p.matricula}";"${p.beneficio}";"${p.data}";"${p.status}"\n`;
+                csv += `"${p.protocolo}";"${p.servidor}";"${p.matricula}";"${p.beneficio}";"${p.data}";"${p.prioridade || 'Normal'}";"${p.status}"\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", `SGPD_Processos_RH_${new Date().toISOString().slice(0,10)}.csv`);
+            link.setAttribute("download", `SGPD_Processos_RH_${new Date().toISOString().slice(0, 10)}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -510,4 +621,5 @@
         }
     </script>
 </body>
+
 </html>

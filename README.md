@@ -16,9 +16,11 @@ prototipo-sgpd/
 │   └── app.js               # Módulo compartilhado: LocalStorage, estado global, notificações e helpers
 ├── index.html               # Tela de Login e Portal de Acesso Gov.br
 ├── servidor.html            # Painel do Servidor Requerente (Minhas Solicitações e Métricas)
-├── nova-solicitacao.html    # Formulário Inteligente de Requerimento com campos dinâmicos
-├── rh.html                  # Painel de Gestão de Pessoas (Fila de Análise e Despacho)
-├── processo.html            # Dossiê Eletrônico Completo (Histórico, Anexos e Resposta de Diligência)
+├── nova-solicitacao.html    # Formulário Inteligente de Requerimento com campos dinâmicos e Drag & Drop
+├── rh.html                  # Painel de Gestão de Pessoas (Fila, Analytics, Filtros e Despacho)
+├── gestor.html              # Painel da Chefia Imediata (Anuência e Homologação Gerencial)
+├── guia.html                # Guia de Benefícios, Base Normativa e Prazos (SLA)
+├── processo.html            # Dossiê Eletrônico Completo (Histórico, Anexos, Despacho e Diligência)
 ├── comprovante.html         # Certidão Oficial de Autuação (Impressão e PDF)
 └── README.md                # Documentação técnica e guia de uso
 ```

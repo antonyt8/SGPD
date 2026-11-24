@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -9,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
     <style>
         .tab-btn {
             padding: 0.75rem 1rem;
@@ -21,12 +24,14 @@
             transition: all 0.15s;
             white-space: nowrap;
         }
+
         .tab-btn.active {
             color: #1d4ed8;
             border-bottom-color: #1d4ed8;
         }
     </style>
 </head>
+
 <body class="bg-slate-100 flex flex-col min-h-screen">
 
     <!-- Barra Governamental Superior -->
@@ -36,11 +41,14 @@
                 <span class="gov-flag-dot"></span>
                 <span>BRASIL</span>
                 <span style="opacity: 0.5; margin: 0 4px;">|</span>
-                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços
+                    Públicos</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="SGPD.resetarDados()" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
-                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar Demonstração</span>
+                <button onclick="SGPD.resetarDados()"
+                    class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar
+                        Demonstração</span>
                 </button>
             </div>
         </div>
@@ -50,7 +58,7 @@
     <header class="app-navbar">
         <div class="sgpd-container">
             <div class="app-navbar-inner">
-                
+
                 <a href="servidor.html" class="app-brand">
                     <div class="app-logo-icon">
                         <i class="fa-solid fa-folder-tree"></i>
@@ -67,19 +75,28 @@
                 <nav class="nav-links-desktop">
                     <a href="servidor.html" class="nav-link">
                         <i class="fa-solid fa-user"></i>
-                        <span>Painel Servidor</span>
+                        <span>Servidor</span>
                     </a>
                     <a href="rh.html" class="nav-link">
                         <i class="fa-solid fa-user-shield"></i>
-                        <span>Painel RH</span>
+                        <span>RH</span>
+                    </a>
+                    <a href="gestor.html" class="nav-link">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Chefia</span>
                     </a>
                 </nav>
 
                 <div class="user-controls">
                     <div class="quick-switcher">
-                        <button onclick="SGPD.alternarPerfil('servidor')" id="btn-sw-servidor" class="quick-switch-btn">Servidor</button>
-                        <button onclick="SGPD.alternarPerfil('rh')" id="btn-sw-rh" class="quick-switch-btn">RH</button>
+                        <button onclick="trocarPerfilLocal('servidor')" id="btn-sw-servidor"
+                            class="quick-switch-btn">Servidor</button>
+                        <button onclick="trocarPerfilLocal('rh')" id="btn-sw-rh" class="quick-switch-btn">RH</button>
+                        <button onclick="trocarPerfilLocal('gestor')" id="btn-sw-gestor"
+                            class="quick-switch-btn">Chefia</button>
                     </div>
+
+                    <div id="notif-container"></div>
 
                     <button onclick="voltar()" class="btn btn-secondary btn-sm">
                         <i class="fa-solid fa-arrow-left"></i> Voltar
@@ -95,244 +112,293 @@
         <div class="sgpd-container max-w-4xl space-y-5">
 
             <!-- Cabeçalho do Dossiê -->
-            <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div
+                class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                     <div class="flex flex-wrap items-center gap-2 mb-1">
-                        <span id="nup-label" class="font-mono font-extrabold text-lg sm:text-xl text-slate-900">SGPD-2026-0000</span>
+                        <span id="nup-label"
+                            class="font-mono font-extrabold text-lg sm:text-xl text-slate-900">SGPD-2026-0000</span>
                         <span id="status-badge" class="badge-status badge-analise text-xs">Em Análise</span>
+                        <span id="sla-badge"
+                            class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">0
+                            dias</span>
                     </div>
                     <p id="subtitulo-label" class="text-xs text-slate-500">
                         Autuado em 22/11/2026 • Requerente: Antony Thiago (SIAPE 50463357)
                     </p>
                 </div>
-                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                    <a id="link-comprovante" href="comprovante.html" class="btn btn-secondary btn-sm text-xs font-bold w-full sm:w-auto">
-                        <i class="fa-solid fa-print"></i> Certidão de Protocolo
-                    </a>
-                </div>
-            </div>
-
-            <!-- Alerta de Diligência Ativa & Formulário de Resposta -->
-            <div id="box-diligencia-ativa" class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-5 shadow-sm space-y-4">
-                <div class="flex items-start gap-3 text-amber-900">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-xl mt-0.5"></i>
-                    <div>
-                        <h3 class="font-bold text-sm text-amber-900">Exigência Formal Solicitada pela Gestão de Pessoas (RH)</h3>
-                        <p id="motivo-diligencia-texto" class="text-xs text-amber-800 italic mt-1 leading-relaxed bg-white/70 p-3 rounded-xl border border-amber-200">
-                            "Aguardando manifestação do setor."
-                        </p>
-                    </div>
+                        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
+                            <button id="btn-acao-rh" onclick="abrirModalDespachoDireto()"
+                                class="hidden btn btn-primary btn-sm text-xs font-bold"
+                                style="background-color: #4338ca;">
+                                <i class="fa-solid fa-stamp"></i> Emitir Despacho
+                            </button>
+                            <button id="btn-acao-gestor" onclick="homologarRapido()"
+                                class="hidden btn btn-success btn-sm text-xs font-bold">
+                                <i class="fa-solid fa-signature"></i> Conceder Anuência
+                            </button>
+                            <a id="link-comprovante" href="comprovante.html"
+                                class="btn btn-secondary btn-sm text-xs font-bold">
+                                <i class="fa-solid fa-print"></i> Certidão
+                            </a>
+                        </div>
                 </div>
 
-                <!-- Formulário de Cumprimento de Exigência (Servidor) -->
-                <form id="form-responder-diligencia" onsubmit="enviarRespostaDiligencia(event)" class="pt-3 border-t border-amber-200 space-y-3">
-                    <div>
-                        <label class="form-label text-xs font-bold text-amber-900">
-                            Esclarecimentos do Servidor (Saneamento do Processo) <span class="required">*</span>
-                        </label>
-                        <textarea id="resp-diligencia-texto" required rows="3"
-                            placeholder="Descreva as correções efetuadas ou preste os esclarecimentos cabíveis para reanálise do RH..."
-                            class="form-control text-xs bg-white"></textarea>
+                <!-- Alerta de Diligência Ativa & Formulário de Resposta -->
+                <div id="box-diligencia-ativa"
+                    class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-5 shadow-sm space-y-4">
+                    <div class="flex items-start gap-3 text-amber-900">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600 text-xl mt-0.5"></i>
+                        <div>
+                            <h3 class="font-bold text-sm text-amber-900">Exigência Formal Solicitada pela Gestão de
+                                Pessoas (RH)</h3>
+                            <p id="motivo-diligencia-texto"
+                                class="text-xs text-amber-800 italic mt-1 leading-relaxed bg-white/70 p-3 rounded-xl border border-amber-200">
+                                "Aguardando manifestação do setor."
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <label class="form-label text-xs font-bold text-amber-900">
-                            Anexar Documento Complementar ou Corrigido (Opcional)
-                        </label>
-                        <input id="resp-diligencia-arquivo" type="file" accept=".pdf,.png,.jpg,.jpeg" class="form-control text-xs bg-white" />
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit" class="btn btn-warning text-xs font-bold shadow-sm">
-                            <i class="fa-solid fa-paper-plane"></i> Protocolar Resposta da Diligência
+
+                    <form id="form-responder-diligencia" onsubmit="enviarRespostaDiligencia(event)"
+                        class="pt-3 border-t border-amber-200 space-y-3">
+                        <div>
+                            <label class="form-label text-xs font-bold text-amber-900">
+                                Esclarecimentos do Servidor (Saneamento do Processo) <span class="required">*</span>
+                            </label>
+                            <textarea id="resp-diligencia-texto" required rows="3"
+                                placeholder="Descreva as correções efetuadas ou preste os esclarecimentos cabíveis para reanálise do RH..."
+                                class="form-control text-xs bg-white"></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label text-xs font-bold text-amber-900">
+                                Anexar Documento Complementar ou Corrigido (Opcional)
+                            </label>
+                            <input id="resp-diligencia-arquivo" type="file" accept=".pdf,.png,.jpg,.jpeg"
+                                class="form-control text-xs bg-white" />
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="btn btn-warning text-xs font-bold shadow-sm">
+                                <i class="fa-solid fa-paper-plane"></i> Protocolar Resposta da Diligência
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Card com Abas do Dossiê -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+
+                    <div class="border-b border-slate-200 bg-slate-50 flex overflow-x-auto px-4">
+                        <button onclick="mudarAba('dados')" id="tab-btn-dados" class="tab-btn active">
+                            <i class="fa-solid fa-file-lines mr-1"></i> Dados do Processo
+                        </button>
+                        <button onclick="mudarAba('docs')" id="tab-btn-docs" class="tab-btn">
+                            <i class="fa-solid fa-paperclip mr-1"></i> Anexos & Certidões (<span
+                                id="cont-anexos">0</span>)
+                        </button>
+                        <button onclick="mudarAba('timeline')" id="tab-btn-timeline" class="tab-btn">
+                            <i class="fa-solid fa-timeline mr-1"></i> Linha do Tempo de Tramitação
                         </button>
                     </div>
-                </form>
-            </div>
 
-            <!-- Card com Abas do Dossiê -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                
-                <!-- Barra de Abas Horizontal com Scroll no Mobile -->
-                <div class="border-b border-slate-200 bg-slate-50 flex overflow-x-auto px-4">
-                    <button onclick="mudarAba('dados')" id="tab-btn-dados" class="tab-btn active">
-                        <i class="fa-solid fa-file-lines mr-1"></i> Dados do Processo
-                    </button>
-                    <button onclick="mudarAba('docs')" id="tab-btn-docs" class="tab-btn">
-                        <i class="fa-solid fa-paperclip mr-1"></i> Anexos & Certidões (<span id="cont-anexos">0</span>)
-                    </button>
-                    <button onclick="mudarAba('timeline')" id="tab-btn-timeline" class="tab-btn">
-                        <i class="fa-solid fa-timeline mr-1"></i> Linha do Tempo de Tramitação
-                    </button>
-                </div>
+                    <div class="p-5 sm:p-7">
 
-                <div class="p-5 sm:p-7">
-                    
-                    <!-- ABA 1: DADOS GERAIS -->
-                    <div id="aba-conteudo-dados" class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                                <span class="text-slate-400 block font-medium">Benefício Pleiteado:</span>
-                                <strong id="dossie-beneficio" class="text-sm text-slate-800">Auxílio-Transporte</strong>
+                        <!-- ABA 1: DADOS GERAIS -->
+                        <div id="aba-conteudo-dados" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                                    <span class="text-slate-400 block font-medium">Benefício Pleiteado:</span>
+                                    <strong id="dossie-beneficio"
+                                        class="text-sm text-slate-800">Auxílio-Transporte</strong>
+                                </div>
+                                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                                    <span class="text-slate-400 block font-medium">Lotação Funcional:</span>
+                                    <strong id="dossie-lotacao" class="text-sm text-slate-800">DTI / PROPLAN</strong>
+                                </div>
                             </div>
-                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                                <span class="text-slate-400 block font-medium">Lotação Funcional:</span>
-                                <strong id="dossie-lotacao" class="text-sm text-slate-800">DTI / PROPLAN</strong>
+
+                            <div id="box-campos-especificos"
+                                class="bg-blue-50/50 p-4 rounded-xl border border-blue-100"></div>
+
+                            <div>
+                                <span class="text-xs text-slate-400 block font-medium mb-1">Justificativa e
+                                    Fundamentação do Requerente:</span>
+                                <div id="dossie-justificativa"
+                                    class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 italic leading-relaxed">
+                                    "Justificativa..."
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Campos dinâmicos do benefício -->
-                        <div id="box-campos-especificos" class="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
-                            <!-- Preenchido via JS -->
-                        </div>
-
-                        <div>
-                            <span class="text-xs text-slate-400 block font-medium mb-1">Justificativa e Fundamentação do Requerente:</span>
-                            <div id="dossie-justificativa" class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 italic leading-relaxed">
-                                "Justificativa..."
+                            <div id="box-parecer-rh" class="hidden">
+                                <span class="text-xs text-slate-400 block font-medium mb-1">Último Despacho Emitido pela
+                                    Gestão de Pessoas (RH):</span>
+                                <div id="dossie-parecer-rh-texto"
+                                    class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-200 text-xs sm:text-sm text-indigo-900 leading-relaxed font-medium">
+                                    "Parecer do RH..."
+                                </div>
                             </div>
                         </div>
 
-                        <div id="box-parecer-rh" class="hidden">
-                            <span class="text-xs text-slate-400 block font-medium mb-1">Último Despacho Emitido pela Gestão de Pessoas (RH):</span>
-                            <div id="dossie-parecer-rh-texto" class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-200 text-xs sm:text-sm text-indigo-900 leading-relaxed font-medium">
-                                "Parecer do RH..."
+                        <!-- ABA 2: DOCUMENTOS E ANEXOS -->
+                        <div id="aba-conteudo-docs" class="hidden space-y-3">
+                            <p class="text-xs text-slate-500">Documentos comprobatórios autenticados eletronicamente sob
+                                padrão criptográfico SHA-256.</p>
+                            <div id="lista-documentos" class="space-y-2"></div>
+                        </div>
+
+                        <!-- ABA 3: LINHA DO TEMPO -->
+                        <div id="aba-conteudo-timeline" class="hidden">
+                            <div id="timeline-lista"
+                                class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
                             </div>
                         </div>
-                    </div>
 
-                    <!-- ABA 2: DOCUMENTOS E ANEXOS -->
-                    <div id="aba-conteudo-docs" class="hidden space-y-3">
-                        <p class="text-xs text-slate-500">Documentos comprobatórios autenticados eletronicamente sob padrão criptográfico SHA-256.</p>
-                        <div id="lista-documentos" class="space-y-2">
-                            <!-- Renderizado via JS -->
-                        </div>
-                    </div>
-
-                    <!-- ABA 3: LINHA DO TEMPO / HISTÓRICO DE TRAMITAÇÃO -->
-                    <div id="aba-conteudo-timeline" class="hidden">
-                        <div id="timeline-lista" class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
-                            <!-- Renderizado via JS -->
-                        </div>
                     </div>
 
                 </div>
 
             </div>
-
-        </div>
     </main>
 
     <!-- MODAL DE VISUALIZAÇÃO DE DOCUMENTO -->
     <div id="modal-preview-doc" class="modal-overlay">
         <div class="modal-box max-w-lg">
             <div class="p-4 bg-slate-900 text-white flex justify-between items-center rounded-t-2xl">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-file-pdf text-rose-400"></i>
-                    <span id="doc-modal-nome" class="text-xs sm:text-sm font-mono truncate">documento.pdf</span>
+                    <div class="flex items-center gap-2 truncate">
+                        <i class="fa-solid fa-file-pdf text-rose-400"></i>
+                        <span id="doc-modal-nome" class="text-xs sm:text-sm font-mono truncate">documento.pdf</span>
+                    </div>
+                    <button onclick="fecharModalPreview()" class="text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
-                <button onclick="fecharModalPreview()" class="text-slate-400 hover:text-white">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="p-8 text-center bg-slate-50 space-y-3">
-                <div class="w-16 h-20 mx-auto bg-white border-2 border-slate-300 rounded shadow flex flex-col items-center justify-center relative">
-                    <i class="fa-solid fa-file-lines text-3xl text-slate-400 mb-1"></i>
-                    <div class="w-8 h-1 bg-slate-200 rounded my-0.5"></div>
-                    <div class="w-10 h-1 bg-slate-200 rounded my-0.5"></div>
-                    <div class="absolute -bottom-2 -right-2 bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-[9px] shadow">
-                        <i class="fa-solid fa-check"></i>
+                        <div id="doc-modal-body" class="p-6 text-center bg-slate-50 space-y-3"></div>
+                        <div class="p-3 bg-white border-t border-slate-200 flex justify-end">
+                            <button onclick="fecharModalPreview()"
+                                class="btn btn-secondary btn-sm text-xs">Fechar</button>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h4 class="font-bold text-slate-800 text-sm">Documento Autenticado no Repositório Digital</h4>
-                    <p class="text-xs text-slate-500 mt-1">Conformidade e integridade garantidas pela MP nº 2.200-2/2001 (ICP-Brasil).</p>
+
+                <!-- MODAL DE DESPACHO DIRETO (RH) -->
+                <div id="modal-despacho-direto" class="modal-overlay">
+                    <div class="modal-box max-w-lg">
+                        <div class="p-4 bg-slate-900 text-white flex justify-between items-center rounded-t-2xl">
+                            <h3 class="text-base font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-stamp text-indigo-400"></i> Despacho Rápido (RH)
+                            </h3>
+                            <button onclick="fecharModalDespachoDireto()" class="text-slate-400 hover:text-white"><i
+                                    class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <form onsubmit="confirmarDespachoDireto(event)" class="p-5 space-y-4">
+                            <div>
+                                <label class="form-label text-xs font-bold uppercase text-slate-600">Decisão</label>
+                                <select id="direto-decisao" class="form-control text-xs font-semibold">
+                                    <option value="Aprovado">Deferir (Aprovar Concessão)</option>
+                                    <option value="Em Diligência">Solicitar Diligência</option>
+                                    <option value="Indeferido">Indeferir Pedido</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label text-xs font-bold uppercase text-slate-600">Parecer Técnico
+                                    *</label>
+                                <textarea id="direto-parecer" required rows="4"
+                                    class="form-control text-xs">DEFERIDO. Documentação analisada e validada conforme as normas vigentes.</textarea>
+                            </div>
+                                <div class="flex justify-end gap-2">
+                                    <button type="button" onclick="fecharModalDespachoDireto()"
+                                        class="btn btn-secondary text-xs">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary text-xs font-bold"
+                                        style="background-color: #4338ca;">Assinar Despacho</button>
+                                </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200 font-mono text-[10px] text-slate-600 truncate">
-                    Hash: <span id="doc-modal-hash">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
-                </div>
-            </div>
-            <div class="p-3 bg-white border-t border-slate-200 flex justify-end">
-                <button onclick="fecharModalPreview()" class="btn btn-secondary btn-sm text-xs">Fechar</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Scripts -->
-    <script src="js/app.js"></script>
-    <script>
-        let processoAtual = null;
+                <footer class="app-footer">
+                    <div class="sgpd-container flex flex-col sm:flex-row justify-between items-center gap-2">
+                        <span><strong>SGPD v3.0</strong> — Sistema de Gestão de Processos Digitais</span>
+                        <span>Conformidade Lei nº 14.129/2021</span>
+                    </div>
+                </footer>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
-            const processos = SGPD.getProcessos();
+                <script src="js/app.js"></script>
+                <script>
+                    let processoAtual = null;
 
-            if (id) {
-                processoAtual = SGPD.getProcessoPorId(id);
-            }
-            if (!processoAtual && processos.length > 0) {
-                processoAtual = processos[0];
-            }
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const id = urlParams.get('id');
+                        const processos = SGPD.getProcessos();
 
-            // Atualiza botões do switcher
-            const u = SGPD.getUsuario();
-            if (u.perfil === 'rh') {
-                document.getElementById('btn-sw-rh').classList.add('active');
-                document.getElementById('btn-sw-servidor').classList.remove('active');
-            } else {
-                document.getElementById('btn-sw-servidor').classList.add('active');
-                document.getElementById('btn-sw-rh').classList.remove('active');
-            }
+                        if (id) processoAtual = SGPD.getProcessoPorId(id);
+                        if (!processoAtual && processos.length > 0) processoAtual = processos[0];
 
-            carregarProcesso();
+                        atualizarBotoesPerfil();
+                        carregarProcesso();
 
-            // Se a URL tiver hash #diligencia, foca na diligencia
-            if (window.location.hash === '#diligencia') {
-                const boxDil = document.getElementById('box-diligencia-ativa');
-                if (boxDil && !boxDil.classList.contains('hidden')) {
-                    boxDil.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
+                        if (window.location.hash === '#diligencia') {
+                            const boxDil = document.getElementById('box-diligencia-ativa');
+                            if (boxDil && !boxDil.classList.contains('hidden')) {
+                                boxDil.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                    });
 
-        function voltar() {
-            const u = SGPD.getUsuario();
-            if (u.perfil === 'rh') {
-                window.location.href = 'rh.html';
-            } else {
-                window.location.href = 'servidor.html';
-            }
-        }
+                    function trocarPerfilLocal(role) {
+                        SGPD.setPerfil(role);
+                        atualizarBotoesPerfil();
+                        carregarProcesso();
+                        SGPD.toast(`Visualizando dossiê como: ${role.toUpperCase()}`, 'info');
+                    }
 
-        function carregarProcesso() {
-            if (!processoAtual) return;
+                    function atualizarBotoesPerfil() {
+                        const u = SGPD.getUsuario();
+                        ['servidor', 'rh', 'gestor'].forEach(r => {
+                            const btn = document.getElementById(`btn-sw-${r}`);
+                            if (btn) btn.classList.toggle('active', u.perfil === r);
+                        });
 
-            document.getElementById('nup-label').textContent = processoAtual.protocolo;
-            document.getElementById('subtitulo-label').textContent = `Autuado em ${processoAtual.data} • Requerente: ${processoAtual.servidor} (SIAPE: ${processoAtual.matricula})`;
-            
-            const badge = document.getElementById('status-badge');
-            badge.className = SGPD.getBadgeClass(processoAtual.status);
-            badge.innerHTML = `${SGPD.getStatusIcon(processoAtual.status)} ${processoAtual.status}`;
+                        const btnRh = document.getElementById('btn-acao-rh');
+                        const btnGestor = document.getElementById('btn-acao-gestor');
+                        if (btnRh) btnRh.classList.toggle('hidden', u.perfil !== 'rh');
+                        if (btnGestor) btnGestor.classList.toggle('hidden', !(u.perfil === 'gestor' && processoAtual && processoAtual.anuenciaChefia === false));
+                    }
 
-            document.getElementById('link-comprovante').href = `comprovante.html?id=${processoAtual.id}`;
+                    function voltar() {
+                        const u = SGPD.getUsuario();
+                        if (u.perfil === 'rh') window.location.href = 'rh.html';
+                        else if (u.perfil === 'gestor') window.location.href = 'gestor.html';
+                        else window.location.href = 'servidor.html';
+                    }
 
-            document.getElementById('dossie-beneficio').textContent = processoAtual.beneficio;
-            document.getElementById('dossie-lotacao').textContent = processoAtual.lotacao || 'DTI / PROPLAN';
-            document.getElementById('dossie-justificativa').textContent = `"${processoAtual.justificativa}"`;
+                    function carregarProcesso() {
+                        if (!processoAtual) return;
 
-            // Parecer do RH
-            const boxParecer = document.getElementById('box-parecer-rh');
-            if (processoAtual.parecerRH) {
-                boxParecer.classList.remove('hidden');
-                document.getElementById('dossie-parecer-rh-texto').textContent = `"${processoAtual.parecerRH}"`;
-            } else {
-                boxParecer.classList.add('hidden');
-            }
+                        document.getElementById('nup-label').textContent = processoAtual.protocolo;
+                        document.getElementById('subtitulo-label').textContent = `Autuado em ${processoAtual.data} • Requerente: ${processoAtual.servidor} (SIAPE: ${processoAtual.matricula})`;
 
-            // Detalhes dinâmicos
-            const boxCampos = document.getElementById('box-campos-especificos');
-            if (processoAtual.detalhes && Object.keys(processoAtual.detalhes).length > 0) {
-                boxCampos.classList.remove('hidden');
-                boxCampos.innerHTML = `
+
+                        const badge = document.getElementById('status-badge');
+                        badge.className = SGPD.getBadgeClass(processoAtual.status);
+                        badge.innerHTML = `${SGPD.getStatusIcon(processoAtual.status)} ${processoAtual.status}`;
+
+                        document.getElementById('link-comprovante').href = `comprovante.html?id=${processoAtual.id}`;
+                        document.getElementById('dossie-beneficio').textContent = processoAtual.beneficio;
+                        document.getElementById('dossie-lotacao').textContent = processoAtual.lotacao || 'DTI / PROPLAN';
+                        document.getElementById('dossie-justificativa').textContent = `"${processoAtual.justificativa}"`;
+
+                        const boxParecer = document.getElementById('box-parecer-rh');
+                        if (processoAtual.parecerRH) {
+                            boxParecer.classList.remove('hidden');
+                            document.getElementById('dossie-parecer-rh-texto').textContent = `"${processoAtual.parecerRH}"`;
+                        } else {
+                            boxParecer.classList.add('hidden');
+                        }
+
+                        const boxCampos = document.getElementById('box-campos-especificos');
+                        if (processoAtual.detalhes && Object.keys(processoAtual.detalhes).length > 0) {
+                            boxCampos.classList.remove('hidden');
+                            boxCampos.innerHTML = `
                     <div class="text-xs font-bold text-blue-900 uppercase tracking-wider mb-2">Parâmetros Específicos do Requerimento</div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                         ${Object.entries(processoAtual.detalhes).map(([k, v]) => `
@@ -343,44 +409,39 @@
                         `).join('')}
                     </div>
                 `;
-            } else {
-                boxCampos.classList.add('hidden');
-            }
+                        } else {
+                            boxCampos.classList.add('hidden');
+                        }
 
-            // Anexos
-            const docs = processoAtual.docs || [{ nome: 'documento_anexo.pdf', tamanho: '1.2 MB', hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' }];
-            document.getElementById('cont-anexos').textContent = docs.length;
+                        const docs = processoAtual.docs || [{ nome: 'documento_anexo.pdf', tamanho: '1.2 MB', hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' }];
+                        document.getElementById('cont-anexos').textContent = docs.length;
 
-            const listaDocs = document.getElementById('lista-documentos');
-            listaDocs.innerHTML = docs.map(d => `
-                <div class="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition">
+                        const listaDocs = document.getElementById('lista-documentos');
+            listaDocs.innerHTML = docs.map((d, idx) => `
+                            < div class= "flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition" >
                     <div class="flex items-center gap-2.5 truncate">
-                        <i class="fa-solid fa-file-pdf text-rose-500 text-lg"></i>
+                        <i class="fa-solid ${d.tipoMime && d.tipoMime.startsWith('image/') ? 'fa-file-image text-blue-500' : 'fa-file-pdf text-rose-500'} text-lg"></i>
                         <div class="truncate">
                             <span class="text-xs font-bold text-slate-800 block truncate">${d.nome}</span>
                             <span class="text-[10px] text-slate-400 font-mono">Tamanho: ${d.tamanho} • SHA-256: ${d.hash ? d.hash.substring(0, 16) + '...' : 'autenticado'}</span>
                         </div>
                     </div>
-                    <button onclick="abrirPreviewDoc('${d.nome}', '${d.hash || 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}')" class="btn btn-secondary btn-sm text-xs">
+                    <button onclick="abrirPreviewDoc(${idx})" class="btn btn-secondary btn-sm text-xs">
                         <i class="fa-regular fa-eye"></i> Visualizar
                     </button>
                 </div>
             `).join('');
 
-            // Timeline
             const timelineLista = document.getElementById('timeline-lista');
             timelineLista.innerHTML = (processoAtual.timeline || []).map(t => `
-                <div class="relative">
+                            < div class= "relative" >
                     <div class="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-blue-600 border-2 border-white shadow"></div>
                     <div class="text-[11px] text-slate-400 font-medium">${t.data} • por <strong class="text-slate-600">${t.autor}</strong></div>
                     <div class="text-xs font-bold text-slate-800 mt-0.5">${t.acao}</div>
-                    <div class="text-xs text-slate-600 mt-1 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
-                        ${t.descricao}
-                    </div>
-                </div>
-            `).join('');
+                    <div class="text-xs text-slate-600 mt-1 bg-slate-50 p-2.5 rounded-lg border border-slate-200">${t.descricao}</div>
+                </div >
+                            `).join('');
 
-            // Seção de Diligência
             const boxDil = document.getElementById('box-diligencia-ativa');
             if (processoAtual.status === 'Em Diligência') {
                 boxDil.classList.remove('hidden');
@@ -388,15 +449,17 @@
             } else {
                 boxDil.classList.add('hidden');
             }
+
+            atualizarBotoesPerfil();
         }
 
         function mudarAba(aba) {
             ['dados', 'docs', 'timeline'].forEach(a => {
-                document.getElementById(`aba-conteudo-${a}`).classList.add('hidden');
-                document.getElementById(`tab-btn-${a}`).classList.remove('active');
+                document.getElementById(`aba - conteudo - ${ a }`).classList.add('hidden');
+                document.getElementById(`tab - btn - ${ a }`).classList.remove('active');
             });
-            document.getElementById(`aba-conteudo-${aba}`).classList.remove('hidden');
-            document.getElementById(`tab-btn-${aba}`).classList.add('active');
+            document.getElementById(`aba - conteudo - ${ aba }`).classList.remove('hidden');
+            document.getElementById(`tab - btn - ${ aba }`).classList.add('active');
         }
 
         function enviarRespostaDiligencia(e) {
@@ -412,42 +475,109 @@
             const horaStr = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
             processoAtual.status = 'Em Análise';
-            processoAtual.dataAtualizacao = `${dataStr} ${horaStr}`;
+            processoAtual.dataAtualizacao = `${ dataStr } ${ horaStr }`;
 
             let desc = `Diligência respondida: "${texto}"`;
             if (arqInput.files.length > 0) {
                 const f = arqInput.files[0];
                 const doc = {
                     nome: f.name,
+                    tipoMime: f.type,
                     tamanho: (f.size / (1024 * 1024)).toFixed(2) + ' MB',
                     hash: 'sha256-san-' + Math.random().toString(36).substring(2, 12)
                 };
                 if (!processoAtual.docs) processoAtual.docs = [];
                 processoAtual.docs.push(doc);
-                desc += ` (Anexo complementar: ${f.name})`;
+                desc += ` (Anexo complementar: ${ f.name })`;
             }
 
             processoAtual.timeline.unshift({
-                data: `${dataStr} ${horaStr}`,
+                data: `${ dataStr } ${ horaStr }`,
                 autor: u.nome,
                 acao: 'Cumprimento de Diligência',
                 descricao: desc
             });
 
             SGPD.salvarProcesso(processoAtual);
+            SGPD.addNotificacao({
+                processoId: processoAtual.id,
+                titulo: `Diligência cumprida: ${ processoAtual.protocolo }`,
+                texto: `${ u.nome } respondeu às exigências documentais.`,
+                data: dataStr
+            });
             carregarProcesso();
             SGPD.toast('Resposta à diligência protocolada com sucesso!', 'sucesso');
         }
 
-        function abrirPreviewDoc(nome, hash) {
-            document.getElementById('doc-modal-nome').textContent = nome;
-            document.getElementById('doc-modal-hash').textContent = hash;
+        function abrirModalDespachoDireto() {
+            document.getElementById('modal-despacho-direto').classList.add('active');
+        }
+
+        function fecharModalDespachoDireto() {
+            document.getElementById('modal-despacho-direto').classList.remove('active');
+        }
+
+        function confirmarDespachoDireto(e) {
+            e.preventDefault();
+            const status = document.getElementById('direto-decisao').value;
+            const parecer = document.getElementById('direto-parecer').value;
+            processoAtual = SGPD.despacharProcesso(processoAtual.id, status, parecer);
+            fecharModalDespachoDireto();
+            carregarProcesso();
+            SGPD.toast(`Despacho registrado: ${ status }`, 'sucesso');
+        }
+
+        function homologarRapido() {
+            processoAtual = SGPD.homologarProcesso(
+                processoAtual.id,
+                true,
+                'Atesto a correlação da capacitação com as atribuições do cargo e concedo anuência da chefia imediata.'
+            );
+            carregarProcesso();
+            SGPD.toast('Anuência da chefia concedida!', 'sucesso');
+        }
+
+        function abrirPreviewDoc(idx) {
+            const docs = processoAtual.docs || [];
+            const d = docs[idx] || { nome: 'documento.pdf', hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' };
+
+            document.getElementById('doc-modal-nome').textContent = d.nome;
+            const body = document.getElementById('doc-modal-body');
+
+            if (d.previewUrl) {
+                body.innerHTML = `
+                        < img src = "${d.previewUrl}" alt = "${d.nome}" class= "max-h-72 mx-auto rounded-lg border border-slate-300 shadow" />
+                        <div class="bg-white p-2 rounded-lg border border-slate-200 font-mono text-[10px] text-slate-600 truncate">
+                            Hash: ${d.hash}
+                        </div>
+                `;
+            } else {
+                body.innerHTML = `
+                            < div class= "w-16 h-20 mx-auto bg-white border-2 border-slate-300 rounded shadow flex flex-col items-center justify-center relative" >
+                        <i class="fa-solid fa-file-lines text-3xl text-slate-400 mb-1"></i>
+                        <div class="w-8 h-1 bg-slate-200 rounded my-0.5"></div>
+                        <div class="w-10 h-1 bg-slate-200 rounded my-0.5"></div>
+                        <div class="absolute -bottom-2 -right-2 bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-[9px] shadow">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </div >
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Documento Autenticado no Repositório Digital</h4>
+                        <p class="text-xs text-slate-500 mt-1">Conformidade e integridade garantidas pela MP nº 2.200-2/2001 (ICP-Brasil).</p>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 font-mono text-[10px] text-slate-600 truncate">
+                        Hash: ${d.hash || 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}
+                    </div>
+                `;
+            }
+
             document.getElementById('modal-preview-doc').classList.add('active');
         }
 
         function fecharModalPreview() {
             document.getElementById('modal-preview-doc').classList.remove('active');
         }
-    </script>
+                </script>
 </body>
+
 </html>

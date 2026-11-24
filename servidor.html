@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -9,8 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="bg-slate-100 flex flex-col min-h-screen">
 
     <!-- Barra Governamental Superior -->
@@ -20,11 +24,14 @@
                 <span class="gov-flag-dot"></span>
                 <span>BRASIL</span>
                 <span style="opacity: 0.5; margin: 0 4px;">|</span>
-                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços
+                    Públicos</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="SGPD.resetarDados()" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
-                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar Demonstração</span>
+                <button onclick="SGPD.resetarDados()"
+                    class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar
+                        Demonstração</span>
                 </button>
             </div>
         </div>
@@ -34,8 +41,7 @@
     <header class="app-navbar">
         <div class="sgpd-container">
             <div class="app-navbar-inner">
-                
-                <!-- Logo & Brand -->
+
                 <a href="servidor.html" class="app-brand">
                     <div class="app-logo-icon">
                         <i class="fa-solid fa-folder-tree"></i>
@@ -49,47 +55,51 @@
                     </div>
                 </a>
 
-                <!-- Navegação Desktop -->
                 <nav class="nav-links-desktop">
                     <a href="servidor.html" class="nav-link active">
                         <i class="fa-solid fa-table-columns"></i>
-                        <span>Minhas Solicitações</span>
+                        <span>Solicitações</span>
                     </a>
                     <a href="nova-solicitacao.html" class="nav-link">
                         <i class="fa-solid fa-circle-plus"></i>
-                        <span>Nova Solicitação</span>
+                        <span>Novo Pedido</span>
+                    </a>
+                    <a href="guia.html" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>Guia</span>
                     </a>
                     <a href="rh.html" class="nav-link">
                         <i class="fa-solid fa-user-shield"></i>
-                        <span>Visão RH</span>
+                        <span>RH</span>
                     </a>
                 </nav>
 
-                <!-- Controles do Usuário -->
                 <div class="user-controls">
-                    
-                    <!-- Alternador Rápido -->
                     <div class="quick-switcher">
-                        <button onclick="SGPD.alternarPerfil('servidor')" class="quick-switch-btn active">Servidor</button>
+                        <button onclick="SGPD.alternarPerfil('servidor')"
+                            class="quick-switch-btn active">Servidor</button>
                         <button onclick="SGPD.alternarPerfil('rh')" class="quick-switch-btn">RH</button>
+                        <button onclick="SGPD.alternarPerfil('gestor')" class="quick-switch-btn">Chefia</button>
                     </div>
 
-                    <!-- Dados do Usuário -->
+                    <div id="notif-container"></div>
+
                     <div class="hidden sm:block text-right">
-                        <div id="nav-user-name" class="text-xs font-bold text-slate-800 leading-tight">Antony Thiago</div>
+                        <div id="nav-user-name" class="text-xs font-bold text-slate-800 leading-tight">Antony Thiago
+                        </div>
                         <div id="nav-user-mat" class="text-[10px] text-blue-600 font-medium">SIAPE: 50463357</div>
                     </div>
 
-                    <div id="nav-user-avatar" class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs border border-blue-200">
+                    <div id="nav-user-avatar"
+                        class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs border border-blue-200">
                         AT
                     </div>
 
-                    <!-- Botão Sair -->
-                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition" title="Sair do Sistema">
+                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition"
+                        title="Sair do Sistema">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
 
-                    <!-- Botão Menu Mobile -->
                     <button onclick="SGPD.toggleMobileMenu()" class="mobile-menu-btn" title="Abrir menu">
                         <i class="fa-solid fa-bars"></i>
                     </button>
@@ -110,8 +120,14 @@
             <a href="nova-solicitacao.html" class="mobile-nav-link">
                 <i class="fa-solid fa-circle-plus text-emerald-600"></i> + Nova Solicitação
             </a>
+            <a href="guia.html" class="mobile-nav-link">
+                <i class="fa-solid fa-book-bookmark text-amber-600"></i> Guia de Benefícios
+            </a>
             <a href="rh.html" class="mobile-nav-link">
-                <i class="fa-solid fa-user-shield text-indigo-600"></i> Alternar para Painel do RH
+                <i class="fa-solid fa-user-shield text-indigo-600"></i> Painel do RH
+            </a>
+            <a href="gestor.html" class="mobile-nav-link">
+                <i class="fa-solid fa-user-tie text-emerald-700"></i> Painel da Chefia
             </a>
             <div class="pt-2 border-t border-slate-200 mt-2">
                 <button onclick="SGPD.logout()" class="btn btn-secondary w-full text-xs text-rose-600">
@@ -126,20 +142,31 @@
         <div class="sgpd-container space-y-6">
 
             <!-- Banner do Servidor -->
-            <div class="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 rounded-2xl p-5 sm:p-7 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div
+                class="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 rounded-2xl p-5 sm:p-7 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 text-xs font-semibold mb-2">
+                    <div
+                        class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 text-xs font-semibold mb-2">
                         <i class="fa-solid fa-user"></i> Portal do Servidor Requerente
                     </div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Meus Processos e Benefícios Digitais</h1>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Meus Processos e Benefícios Digitais
+                    </h1>
                     <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
-                        Acompanhe o trâmite oficial, cumpra diligências e consulte o histórico integral dos seus requerimentos.
+                        Acompanhe o trâmite oficial, cumpra diligências e consulte o histórico integral dos seus
+                        requerimentos.
                     </p>
                 </div>
-                <a href="nova-solicitacao.html" class="btn btn-primary shadow-lg shadow-blue-600/30 w-full sm:w-auto">
-                    <i class="fa-solid fa-circle-plus"></i>
-                    <span>Nova Solicitação</span>
-                </a>
+                <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                    <a href="guia.html" class="btn btn-secondary text-xs w-full sm:w-auto">
+                        <i class="fa-solid fa-book-bookmark text-blue-600"></i>
+                        <span>Guia de Benefícios</span>
+                    </a>
+                    <a href="nova-solicitacao.html"
+                        class="btn btn-primary shadow-lg shadow-blue-600/30 w-full sm:w-auto">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Nova Solicitação</span>
+                    </a>
+                </div>
             </div>
 
             <!-- Cards de Métricas -->
@@ -183,12 +210,15 @@
             </div>
 
             <!-- Alerta Dinâmico de Diligência -->
-            <div id="alert-diligencia" class="hidden bg-amber-50 border border-amber-300 rounded-xl p-4 text-amber-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div id="alert-diligencia"
+                class="hidden bg-amber-50 border border-amber-300 rounded-xl p-4 text-amber-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div class="flex items-start gap-3">
                     <i class="fa-solid fa-triangle-exclamation text-amber-500 text-xl mt-0.5"></i>
                     <div>
-                        <div class="font-bold text-xs sm:text-sm">Atenção: Você possui pendência de documentação (Diligência)!</div>
-                        <div class="text-xs text-amber-800">O RH solicitou complementação. Clique em "Responder Diligência" para não atrasar a concessão.</div>
+                        <div class="font-bold text-xs sm:text-sm">Atenção: Você possui pendência de documentação
+                            (Diligência)!</div>
+                        <div class="text-xs text-amber-800">O RH solicitou complementação. Clique em "Responder
+                            Diligência" para não atrasar a concessão.</div>
                     </div>
                 </div>
                 <button onclick="filtrarPorStatus('Em Diligência')" class="btn btn-warning btn-sm whitespace-nowrap">
@@ -198,9 +228,9 @@
 
             <!-- Tabela e Controles -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                
-                <!-- Barra de Busca & Filtros -->
-                <div class="p-4 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
+
+                <div
+                    class="p-4 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
                     <div>
                         <h2 class="font-bold text-slate-800 text-sm sm:text-base">Requerimentos Autuados</h2>
                         <p class="text-xs text-slate-500">Histórico de processos vinculados à sua matrícula</p>
@@ -208,10 +238,12 @@
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                         <div class="relative">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                            <input id="busca-input" oninput="renderizar()" type="text" placeholder="Buscar protocolo, benefício..."
+                            <input id="busca-input" oninput="renderizar()" type="text"
+                                placeholder="Buscar protocolo, benefício..."
                                 class="form-control pl-8 text-xs py-1.5 w-full sm:w-60" />
                         </div>
-                        <select id="filtro-status" onchange="renderizar()" class="form-control text-xs py-1.5 w-full sm:w-auto font-medium">
+                        <select id="filtro-status" onchange="renderizar()"
+                            class="form-control text-xs py-1.5 w-full sm:w-auto font-medium">
                             <option value="todos">Todos os Status</option>
                             <option value="Em Análise">Em Análise</option>
                             <option value="Em Diligência">Em Diligência</option>
@@ -221,28 +253,24 @@
                     </div>
                 </div>
 
-                <!-- Tabela Visível em Telas Médias e Grandes -->
+                <!-- Tabela Desktop -->
                 <div class="table-responsive-container hidden sm:block">
                     <table class="data-table">
                         <thead>
                             <tr>
                                 <th>Protocolo NUP</th>
                                 <th>Benefício Requerido</th>
-                                <th>Data Autuação</th>
+                                <th>Autuação / SLA</th>
                                 <th>Status</th>
                                 <th style="text-align: right;">Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="tabela-corpo">
-                            <!-- Renderizado via JS -->
-                        </tbody>
+                        <tbody id="tabela-corpo"></tbody>
                     </table>
                 </div>
 
-                <!-- Lista de Cards Visível em Telas Pequenas (Mobile) -->
-                <div id="lista-cards-mobile" class="sm:hidden divide-y divide-slate-100 p-3 space-y-3">
-                    <!-- Renderizado via JS para Mobile -->
-                </div>
+                <!-- Cards Mobile -->
+                <div id="lista-cards-mobile" class="sm:hidden p-3 space-y-3"></div>
 
                 <!-- Estado Vazio -->
                 <div id="estado-vazio" class="hidden p-8 text-center text-slate-400">
@@ -256,7 +284,13 @@
         </div>
     </main>
 
-    <!-- Scripts -->
+    <footer class="app-footer">
+        <div class="sgpd-container flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span><strong>SGPD v3.0</strong> — Sistema de Gestão de Processos Digitais</span>
+            <span>Conformidade Lei nº 14.129/2021 • Dados persistidos localmente</span>
+        </div>
+    </footer>
+
     <script src="js/app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -275,26 +309,18 @@
             const busca = (document.getElementById('busca-input').value || '').toLowerCase().trim();
             const statusFiltro = document.getElementById('filtro-status').value;
 
-            // Filtra processos do servidor
             let lista = processos.filter(p => p.matricula === usuario.matricula || p.servidor === usuario.nome);
 
-            // Atualiza estatísticas
-            const total = lista.length;
-            const emAnalise = lista.filter(p => p.status === 'Em Análise').length;
+            document.getElementById('stat-total').textContent = lista.length;
+            document.getElementById('stat-analise').textContent = lista.filter(p => p.status === 'Em Análise').length;
             const emDiligencia = lista.filter(p => p.status === 'Em Diligência').length;
-            const aprovados = lista.filter(p => p.status === 'Aprovado').length;
-
-            document.getElementById('stat-total').textContent = total;
-            document.getElementById('stat-analise').textContent = emAnalise;
             document.getElementById('stat-diligencia').textContent = emDiligencia;
-            document.getElementById('stat-aprovados').textContent = aprovados;
+            document.getElementById('stat-aprovados').textContent = lista.filter(p => p.status === 'Aprovado').length;
 
-            // Alerta de diligência
             const alertEl = document.getElementById('alert-diligencia');
             if (emDiligencia > 0) alertEl.classList.remove('hidden');
             else alertEl.classList.add('hidden');
 
-            // Filtros
             if (statusFiltro !== 'todos') {
                 lista = lista.filter(p => p.status === statusFiltro);
             }
@@ -319,18 +345,24 @@
 
             emptyEl.classList.add('hidden');
 
-            // Renderiza Tabela (Desktop)
-            tbody.innerHTML = lista.map(p => `
-                <tr>
+            tbody.innerHTML = lista.map(p => {
+                const dias = SGPD.getSlaDias(p.data);
+                return `
+                < tr >
                     <td>
-                        <span class="font-mono font-bold text-slate-900">${p.protocolo}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-mono font-bold text-slate-900">${p.protocolo}</span>
+                            ${p.prioridade === 'Urgente' ? '<span class="badge-urgente"><i class="fa-solid fa-bolt"></i> Urgente</span>' : ''}
+                        </div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">Atualizado: ${p.dataAtualizacao || p.data}</div>
                     </td>
                     <td>
                         <div class="font-semibold text-slate-800">${p.beneficio}</div>
                         <div class="text-xs text-slate-500 truncate max-w-xs">${p.justificativa}</div>
                     </td>
                     <td class="text-xs text-slate-600 font-medium">
-                        ${p.data}
+                        <div>${p.data}</div>
+                        <span class="text-[10px] text-slate-400">${dias} dia(s) em trâmite</span>
                     </td>
                     <td>
                         <span class="${SGPD.getBadgeClass(p.status)}">
@@ -350,14 +382,17 @@
                             <i class="fa-solid fa-print"></i>
                         </a>
                     </td>
-                </tr>
-            `).join('');
+                </tr >
+            `;
+        }).join('');
 
-            // Renderiza Cards (Mobile)
-            cardsMobile.innerHTML = lista.map(p => `
-                <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
-                    <div class="flex justify-between items-start">
-                        <span class="font-mono font-bold text-xs text-slate-900">${p.protocolo}</span>
+        cardsMobile.innerHTML = lista.map(p => `
+                <div class="p-3.5 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="flex justify-between items-start gap-2">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="font-mono font-bold text-xs text-slate-900">${p.protocolo}</span>
+                            ${p.prioridade === 'Urgente' ? '<span class="badge-urgente">Urgente</span>' : ''}
+                        </div>
                         <span class="${SGPD.getBadgeClass(p.status)} text-[10px]">
                             ${SGPD.getStatusIcon(p.status)} ${p.status}
                         </span>
@@ -366,8 +401,8 @@
                         <div class="font-bold text-slate-800 text-sm">${p.beneficio}</div>
                         <p class="text-xs text-slate-500 line-clamp-2 mt-0.5">${p.justificativa}</p>
                     </div>
-                    <div class="text-[11px] text-slate-400">Autuado em: ${p.data}</div>
-                    <div class="pt-2 border-t border-slate-100 flex gap-2 justify-end">
+                    <div class="text-[11px] text-slate-400">Autuado em: ${p.data} • ${SGPD.getSlaDias(p.data)}d em trâmite</div>
+                    <div class="pt-2 border-t border-slate-100 flex gap-2 justify-end flex-wrap">
                         ${p.status === 'Em Diligência' ? `
                             <a href="processo.html?id=${p.id}#diligencia" class="btn btn-warning btn-sm text-xs font-bold py-1">
                                 <i class="fa-solid fa-reply"></i> Responder
@@ -385,4 +420,5 @@
         }
     </script>
 </body>
+
 </html>

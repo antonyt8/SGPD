@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Guia de Benefícios & Normativos • SGPD</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 flex flex-col min-h-screen">
+
+    <!-- Barra Governamental Superior -->
+    <div class="gov-top-bar">
+        <div class="gov-top-bar-inner">
+            <div class="gov-brand">
+                <span class="gov-flag-dot"></span>
+                <span>BRASIL</span>
+                <span style="opacity: 0.5; margin: 0 4px;">|</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="SGPD.resetarDados()" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar Demonstração</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="app-navbar">
+        <div class="sgpd-container">
+            <div class="app-navbar-inner">
+                
+                <a href="servidor.html" class="app-brand">
+                    <div class="app-logo-icon">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <div>
+                        <div class="app-brand-title">
+                            <span>SGPD</span>
+                            <span class="app-brand-badge">Normativos</span>
+                        </div>
+                        <div class="app-brand-subtitle hidden sm:block">Carta de Serviços & Benefícios</div>
+                    </div>
+                </a>
+
+                <nav class="nav-links-desktop">
+                    <a href="servidor.html" class="nav-link">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <span>Minhas Solicitações</span>
+                    </a>
+                    <a href="nova-solicitacao.html" class="nav-link">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Nova Solicitação</span>
+                    </a>
+                    <a href="guia.html" class="nav-link active">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>Guia</span>
+                    </a>
+                    <a href="rh.html" class="nav-link">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>RH</span>
+                    </a>
+                </nav>
+
+                <div class="user-controls">
+                    <div id="notif-container"></div>
+
+                    <button onclick="history.back()" class="btn btn-secondary btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar
+                    </button>
+
+                    <button onclick="SGPD.toggleMobileMenu()" class="mobile-menu-btn" title="Abrir menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mobile-drawer" class="mobile-nav-drawer">
+            <a href="servidor.html" class="mobile-nav-link">
+                <i class="fa-solid fa-table-columns text-blue-600"></i> Minhas Solicitações
+            </a>
+            <a href="nova-solicitacao.html" class="mobile-nav-link">
+                <i class="fa-solid fa-circle-plus text-emerald-600"></i> + Nova Solicitação
+            </a>
+            <a href="guia.html" class="mobile-nav-link active">
+                <i class="fa-solid fa-book-bookmark text-indigo-600"></i> Guia de Benefícios
+            </a>
+            <a href="rh.html" class="mobile-nav-link">
+                <i class="fa-solid fa-user-shield text-slate-600"></i> Painel do RH
+            </a>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 py-6">
+        <div class="sgpd-container space-y-6">
+
+            <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-scale-balanced"></i> Carta de Serviços Digitais
+                    </span>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Guia de Benefícios e Requisitos Legais</h1>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-2xl">
+                        Consulte os prazos de atendimento (SLA), a fundamentação legal e os documentos obrigatórios antes de autuar seu processo.
+                    </p>
+                </div>
+                <a href="nova-solicitacao.html" class="btn btn-primary w-full sm:w-auto shadow">
+                    <i class="fa-solid fa-circle-plus"></i> Novo Requerimento
+                </a>
+            </div>
+
+            <!-- Filtro de Busca do Guia -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
+                <input id="busca-guia" oninput="renderizarGuia()" type="text" placeholder="Filtrar benefícios por nome, lei ou documento..." class="w-full text-sm outline-none text-slate-800" />
+            </div>
+
+            <!-- Grid de Benefícios -->
+            <div id="grid-guia" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Renderizado via JS -->
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="sgpd-container flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span><strong>SGPD v3.0</strong> — Sistema de Gestão de Processos Digitais</span>
+            <span>Conformidade Lei nº 14.129/2021</span>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarGuia();
+        });
+
+        function renderizarGuia() {
+            const termo = (document.getElementById('busca-guia').value || '').toLowerCase().trim();
+            const grid = document.getElementById('grid-guia');
+
+            const itens = SGPD.BENEFICIOS_CATALOGO.filter(b =>
+                !termo ||
+                b.titulo.toLowerCase().includes(termo) ||
+                b.baseLegal.toLowerCase().includes(termo) ||
+                b.resumo.toLowerCase().includes(termo) ||
+                b.requisitos.some(r => r.toLowerCase().includes(termo))
+            );
+
+            if (itens.length === 0) {
+                grid.innerHTML = '<div class="col-span-full p-8 text-center text-slate-400 text-sm bg-white rounded-2xl border border-slate-200">Nenhum benefício encontrado com esse termo.</div>';
+                return;
+            }
+
+            const cores = {
+                blue: 'bg-blue-50 text-blue-600 border-blue-200',
+                indigo: 'bg-indigo-50 text-indigo-600 border-indigo-200',
+                amber: 'bg-amber-50 text-amber-600 border-amber-200',
+                emerald: 'bg-emerald-50 text-emerald-600 border-emerald-200',
+                rose: 'bg-rose-50 text-rose-600 border-rose-200'
+            };
+
+            grid.innerHTML = itens.map(b => `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 flex flex-col justify-between gap-4 hover:border-blue-300 transition">
+                    <div class="space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-xl border flex items-center justify-center text-lg ${cores[b.cor] || cores.blue}">
+                                    <i class="fa-solid ${b.icone}"></i>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-slate-900 text-base">${b.titulo}</h2>
+                                    <span class="text-[11px] font-medium text-slate-500">${b.baseLegal}</span>
+                                </div>
+                            </div>
+                            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 whitespace-nowrap">
+                                <i class="fa-regular fa-clock mr-1"></i> SLA: ${b.prazoSla}
+                            </span>
+                        </div>
+
+                        <p class="text-xs text-slate-600 leading-relaxed">${b.resumo}</p>
+
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            <div class="text-[11px] font-bold uppercase text-slate-500 mb-1.5">Documentos Exigidos:</div>
+                            <ul class="space-y-1 text-xs text-slate-700">
+                                ${b.requisitos.map(r => `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-[10px]"></i><span>${r}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-100 flex justify-end">
+                        <a href="nova-solicitacao.html?tipo=${encodeURIComponent(b.id)}" class="btn btn-primary btn-sm text-xs">
+                            <i class="fa-solid fa-paper-plane"></i> Solicitar ${b.titulo}
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

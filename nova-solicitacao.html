@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -9,8 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="bg-slate-100 flex flex-col min-h-screen">
 
     <!-- Barra Governamental Superior -->
@@ -20,11 +24,14 @@
                 <span class="gov-flag-dot"></span>
                 <span>BRASIL</span>
                 <span style="opacity: 0.5; margin: 0 4px;">|</span>
-                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços
+                    Públicos</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="SGPD.resetarDados()" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
-                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar Demonstração</span>
+                <button onclick="SGPD.resetarDados()"
+                    class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar
+                        Demonstração</span>
                 </button>
             </div>
         </div>
@@ -34,8 +41,7 @@
     <header class="app-navbar">
         <div class="sgpd-container">
             <div class="app-navbar-inner">
-                
-                <!-- Logo & Brand -->
+
                 <a href="servidor.html" class="app-brand">
                     <div class="app-logo-icon">
                         <i class="fa-solid fa-folder-tree"></i>
@@ -49,34 +55,42 @@
                     </div>
                 </a>
 
-                <!-- Navegação Desktop -->
                 <nav class="nav-links-desktop">
                     <a href="servidor.html" class="nav-link">
                         <i class="fa-solid fa-table-columns"></i>
-                        <span>Minhas Solicitações</span>
+                        <span>Solicitações</span>
                     </a>
                     <a href="nova-solicitacao.html" class="nav-link active">
                         <i class="fa-solid fa-circle-plus"></i>
-                        <span>Nova Solicitação</span>
+                        <span>Novo Pedido</span>
+                    </a>
+                    <a href="guia.html" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>Guia</span>
                     </a>
                     <a href="rh.html" class="nav-link">
                         <i class="fa-solid fa-user-shield"></i>
-                        <span>Visão RH</span>
+                        <span>RH</span>
                     </a>
                 </nav>
 
-                <!-- Controles do Usuário -->
                 <div class="user-controls">
                     <div class="quick-switcher">
-                        <button onclick="SGPD.alternarPerfil('servidor')" class="quick-switch-btn active">Servidor</button>
+                        <button onclick="SGPD.alternarPerfil('servidor')"
+                            class="quick-switch-btn active">Servidor</button>
                         <button onclick="SGPD.alternarPerfil('rh')" class="quick-switch-btn">RH</button>
+                        <button onclick="SGPD.alternarPerfil('gestor')" class="quick-switch-btn">Chefia</button>
                     </div>
 
-                    <div id="nav-user-avatar" class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs border border-blue-200">
+                    <div id="notif-container"></div>
+
+                    <div id="nav-user-avatar"
+                        class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs border border-blue-200">
                         AT
                     </div>
 
-                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition" title="Sair do Sistema">
+                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition"
+                        title="Sair do Sistema">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
 
@@ -88,7 +102,6 @@
             </div>
         </div>
 
-        <!-- Drawer Mobile -->
         <div id="mobile-drawer" class="mobile-nav-drawer">
             <a href="servidor.html" class="mobile-nav-link">
                 <i class="fa-solid fa-table-columns text-blue-600"></i> Minhas Solicitações
@@ -96,8 +109,11 @@
             <a href="nova-solicitacao.html" class="mobile-nav-link active">
                 <i class="fa-solid fa-circle-plus text-emerald-600"></i> + Nova Solicitação
             </a>
+            <a href="guia.html" class="mobile-nav-link">
+                <i class="fa-solid fa-book-bookmark text-amber-600"></i> Guia de Benefícios
+            </a>
             <a href="rh.html" class="mobile-nav-link">
-                <i class="fa-solid fa-user-shield text-indigo-600"></i> Alternar para Painel do RH
+                <i class="fa-solid fa-user-shield text-indigo-600"></i> Painel do RH
             </a>
         </div>
     </header>
@@ -105,8 +121,7 @@
     <!-- Conteúdo Principal -->
     <main class="flex-1 py-6">
         <div class="sgpd-container max-w-3xl space-y-5">
-            
-            <!-- Breadcrumbs & Título -->
+
             <div class="flex items-center justify-between flex-wrap gap-2">
                 <div>
                     <div class="text-xs text-slate-400 mb-1 flex items-center gap-1.5">
@@ -114,7 +129,8 @@
                         <span>/</span>
                         <span class="text-slate-600 font-medium">Novo Requerimento</span>
                     </div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Requerimento de Benefício Funcional</h1>
+                    <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Requerimento de
+                        Benefício Funcional</h1>
                 </div>
                 <a href="servidor.html" class="btn btn-secondary btn-sm">
                     <i class="fa-solid fa-arrow-left"></i> Voltar ao Painel
@@ -122,7 +138,8 @@
             </div>
 
             <!-- Ficha do Requerente -->
-            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div
+                class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 <div>
                     <span class="text-slate-400 block font-medium">Requerente Autuador:</span>
                     <strong class="text-slate-800 text-sm">Antony Thiago B. da Silva</strong>
@@ -138,102 +155,169 @@
             </div>
 
             <!-- Formulário -->
-            <form onsubmit="submeterRequerimento(event)" class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 shadow-sm space-y-5">
-                
-                <!-- 1. Tipo de Benefício -->
-                <div class="form-group mb-0">
-                    <label class="form-label text-sm font-bold text-slate-800">
-                        Tipo de Benefício Requerido <span class="required">*</span>
-                    </label>
-                    <select id="tipo-beneficio" required onchange="aoMudarBeneficio()" class="form-control font-semibold">
-                        <option value="Auxílio-Transporte">Auxílio-Transporte (Deslocamento Residência / Trabalho)</option>
-                        <option value="Adicional de Qualificação">Adicional de Qualificação (Especialização / Mestrado / Doutorado)</option>
-                        <option value="Licença Capacitação">Licença Capacitação (Afastamento remunerado para aperfeiçoamento)</option>
-                        <option value="Auxílio-Alimentação">Auxílio-Alimentação (Inclusão ou alteração de dados bancários)</option>
-                        <option value="Auxílio-Natalidade / Creche">Auxílio-Natalidade / Creche (Dependentes até 6 anos)</option>
-                    </select>
-                </div>
+            <form onsubmit="submeterRequerimento(event)"
+                class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 shadow-sm space-y-5">
 
-                <!-- 2. Instruções Normativas Dinâmicas -->
-                <div id="box-instrucoes" class="p-3.5 bg-blue-50/70 border border-blue-200 rounded-xl text-xs text-blue-900 flex items-start gap-2.5">
-                    <i class="fa-solid fa-circle-info text-blue-600 mt-0.5 text-sm"></i>
-                    <div id="texto-instrucoes">
-                        Indenização destinada ao custeio de despesas de transporte coletivo. Anexe comprovante de endereço recente e trajeto.
+                    <!-- 1. Tipo de Benefício & Prioridade -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="sm:col-span-2">
+                            <label class="form-label text-sm font-bold text-slate-800">
+                                Tipo de Benefício Requerido <span class="required">*</span>
+                            </label>
+                            <select id="tipo-beneficio" required onchange="aoMudarBeneficio()"
+                                class="form-control font-semibold">
+                                <option value="Auxílio-Transporte">Auxílio-Transporte (Deslocamento Residência /
+                                    Trabalho)</option>
+                                <option value="Adicional de Qualificação">Adicional de Qualificação (Especialização /
+                                    Mestrado / Doutorado)</option>
+                                <option value="Licença Capacitação">Licença Capacitação (Afastamento remunerado para
+                                    aperfeiçoamento)</option>
+                                <option value="Auxílio-Alimentação">Auxílio-Alimentação (Inclusão ou alteração de dados
+                                    bancários)</option>
+                                <option value="Auxílio-Natalidade / Creche">Auxílio-Natalidade / Creche (Dependentes até
+                                    6 anos)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label text-sm font-bold text-slate-800">Prioridade</label>
+                            <select id="prioridade-pedido" class="form-control font-medium">
+                                <option value="Normal">Tramitação Normal</option>
+                                <option value="Urgente">Urgente (Prazo Legal)</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <!-- 3. CAMPOS ESPECÍFICOS DO BENEFÍCIO (Dinâmicos) -->
-                <div id="container-campos-especificos" class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
-                    <!-- Renderizado dinamicamente via JS -->
-                </div>
+                    <!-- 2. Instruções Normativas Dinâmicas -->
+                    <div id="box-instrucoes"
+                        class="p-3.5 bg-blue-50/70 border border-blue-200 rounded-xl text-xs text-blue-900 flex items-start gap-2.5">
+                        <i class="fa-solid fa-circle-info text-blue-600 mt-0.5 text-sm"></i>
+                        <div id="texto-instrucoes">
+                            Indenização destinada ao custeio de despesas de transporte coletivo. Anexe comprovante de
+                            endereço recente e trajeto.
+                        </div>
+                    </div>
 
-                <!-- 4. Justificativa -->
-                <div class="form-group mb-0">
-                    <div class="flex justify-between items-center mb-1">
-                        <label class="form-label text-sm font-bold text-slate-800 mb-0">
-                            Justificativa e Fundamentação do Requerimento <span class="required">*</span>
+                    <!-- 3. CAMPOS ESPECÍFICOS DO BENEFÍCIO (Dinâmicos) -->
+                    <div id="container-campos-especificos"
+                        class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3"></div>
+
+                    <!-- 4. Justificativa -->
+                    <div class="form-group mb-0">
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="form-label text-sm font-bold text-slate-800 mb-0">
+                                Justificativa e Fundamentação do Requerimento <span class="required">*</span>
+                            </label>
+                            <span id="char-count" class="text-[11px] text-slate-400">0 / 500 caracteres</span>
+                        </div>
+                        <textarea id="justificativa" required rows="3" maxlength="500" oninput="contarChars()"
+                            placeholder="Descreva detalhadamente a solicitação, indicando as razões de fato e de direito..."
+                            class="form-control text-sm"></textarea>
+                    </div>
+
+                    <!-- 5. UPLOAD DE DOCUMENTOS COM DRAG & DROP REAL -->
+                    <div class="form-group mb-0">
+                        <label class="form-label text-sm font-bold text-slate-800 mb-1">
+                            Documentos Comprobatórios Obrigatórios <span class="required">*</span>
                         </label>
-                        <span id="char-count" class="text-[11px] text-slate-400">0 / 500 caracteres</span>
-                    </div>
-                    <textarea id="justificativa" required rows="3" maxlength="500" oninput="contarChars()"
-                        placeholder="Descreva detalhadamente a solicitação, indicando as razões de fato e de direito..."
-                        class="form-control text-sm"></textarea>
-                </div>
 
-                <!-- 5. UPLOAD DE DOCUMENTOS -->
-                <div class="form-group mb-0">
-                    <label class="form-label text-sm font-bold text-slate-800 mb-1">
-                        Documentos Comprobatórios Obrigatórios <span class="required">*</span>
-                    </label>
+                        <div id="dropzone" onclick="document.getElementById('input-arquivos').click()"
+                            class="border-2 border-dashed border-blue-200 hover:border-blue-400 bg-blue-50/30 hover:bg-blue-50/60 p-5 rounded-xl text-center cursor-pointer transition">
+                            <input id="input-arquivos" type="file" multiple accept=".pdf,.png,.jpg,.jpeg"
+                                onchange="selecionarArquivos(event)" class="hidden" />
+                            <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-600 mb-1"></i>
+                            <div class="text-sm font-bold text-slate-700">Clique para selecionar ou arraste e solte os
+                                arquivos aqui</div>
+                            <div class="text-xs text-slate-400 mt-0.5">Formatos aceitos: PDF, JPG, PNG (Até 10MB por
+                                arquivo)</div>
+                        </div>
 
-                    <div id="dropzone" onclick="document.getElementById('input-arquivos').click()"
-                        class="border-2 border-dashed border-blue-200 hover:border-blue-400 bg-blue-50/30 hover:bg-blue-50/60 p-5 rounded-xl text-center cursor-pointer transition">
-                        <input id="input-arquivos" type="file" multiple accept=".pdf,.png,.jpg,.jpeg" onchange="selecionarArquivos(event)" class="hidden" />
-                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-600 mb-1"></i>
-                        <div class="text-sm font-bold text-slate-700">Clique para selecionar ou arraste os arquivos aqui</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Formatos: PDF, JPG, PNG (Até 10MB por arquivo)</div>
+                        <div id="lista-arquivos-anexados" class="mt-3 space-y-1.5"></div>
                     </div>
 
-                    <div id="lista-arquivos-anexados" class="mt-3 space-y-1.5">
-                        <!-- Arquivos anexados via JS -->
+                    <!-- 6. Termo de Veracidade -->
+                    <div class="pt-2">
+                        <label class="flex items-start gap-2.5 cursor-pointer select-none">
+                            <input id="termo-veracidade" type="checkbox" required
+                                class="mt-1 w-4 h-4 text-blue-600 rounded border-slate-300" />
+                            <span class="text-xs text-slate-600 leading-relaxed">
+                                Declaro, sob as penas da lei (especialmente o <strong>Art. 299 do Código Penal
+                                    Brasileiro</strong>), que as informações prestadas e os documentos acostados a este
+                                requerimento são autênticos, exatos e verdadeiros.
+                            </span>
+                        </label>
                     </div>
-                </div>
 
-                <!-- 6. Termo de Veracidade -->
-                <div class="pt-2">
-                    <label class="flex items-start gap-2.5 cursor-pointer select-none">
-                        <input id="termo-veracidade" type="checkbox" required class="mt-1 w-4 h-4 text-blue-600 rounded border-slate-300" />
-                        <span class="text-xs text-slate-600 leading-relaxed">
-                            Declaro, sob as penas da lei (especialmente o <strong>Art. 299 do Código Penal Brasileiro</strong>), que as informações prestadas e os documentos acostados a este requerimento são autênticos, exatos e verdadeiros.
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Botões de Ação -->
-                <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-end gap-2.5">
-                    <a href="servidor.html" class="btn btn-secondary w-full sm:w-auto text-center">
-                        Cancelar
-                    </a>
-                    <button type="submit" class="btn btn-primary w-full sm:w-auto font-bold shadow-md shadow-blue-600/20">
-                        <i class="fa-solid fa-paper-plane text-xs"></i>
-                        <span>Autuar e Protocolar Requerimento</span>
-                    </button>
-                </div>
+                    <!-- Botões de Ação -->
+                    <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-end gap-2.5">
+                        <a href="servidor.html" class="btn btn-secondary w-full sm:w-auto text-center">Cancelar</a>
+                        <button type="submit"
+                            class="btn btn-primary w-full sm:w-auto font-bold shadow-md shadow-blue-600/20">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                            <span>Autuar e Protocolar Requerimento</span>
+                        </button>
+                    </div>
 
             </form>
 
         </div>
     </main>
 
-    <!-- Scripts -->
+    <footer class="app-footer">
+        <div class="sgpd-container flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span><strong>SGPD v3.0</strong> — Sistema de Gestão de Processos Digitais</span>
+            <span>Conformidade Lei nº 14.129/2021</span>
+        </div>
+    </footer>
+
     <script src="js/app.js"></script>
     <script>
         let arquivosSelecionados = [];
 
         document.addEventListener('DOMContentLoaded', () => {
             SGPD.setPerfil('servidor');
+
+            // Pré-seleção vinda de guia.html?tipo=...
+            const params = new URLSearchParams(window.location.search);
+            const tipoParam = params.get('tipo');
+            if (tipoParam) {
+                const select = document.getElementById('tipo-beneficio');
+                for (const opt of select.options) {
+                    if (opt.value === tipoParam) {
+                        select.value = tipoParam;
+                        break;
+                    }
+                }
+            }
+
             aoMudarBeneficio();
+            inicializarDragAndDrop();
         });
+
+        function inicializarDragAndDrop() {
+            const dz = document.getElementById('dropzone');
+            if (!dz) return;
+
+            ['dragenter', 'dragover'].forEach(evt => {
+                dz.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dz.classList.add('dropzone-active');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(evt => {
+                dz.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dz.classList.remove('dropzone-active');
+                });
+            });
+
+            dz.addEventListener('drop', (e) => {
+                const files = Array.from(e.dataTransfer.files || []);
+                processarArquivos(files);
+            });
+        }
 
         function contarChars() {
             const val = document.getElementById('justificativa').value;
@@ -297,7 +381,7 @@
                     </div>
                 `;
             } else if (tipo === 'Licença Capacitação') {
-                textoInstrucoes.textContent = 'Afastamento remunerado de até 90 dias a cada quinquênio para curso de desenvolvimento. Obrigatório: Comprovante de matrícula com carga horária e cronograma.';
+                textoInstrucoes.textContent = 'Afastamento remunerado de até 90 dias a cada quinquênio para curso de desenvolvimento. Obrigatório: Comprovante de matrícula e posterior anuência da Chefia Imediata.';
                 container.innerHTML = `
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         <div>
@@ -318,6 +402,20 @@
                         </div>
                     </div>
                 `;
+            } else if (tipo === 'Auxílio-Natalidade / Creche') {
+                textoInstrucoes.textContent = 'Assistência pré-escolar ou auxílio-natalidade. Obrigatório: Certidão de Nascimento do dependente e CPF cadastrado.';
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <label class="form-label">Nome Completo do Dependente *</label>
+                            <input id="campo-dep-nome" type="text" required placeholder="Ex: Lucas Gabriel Silva" class="form-control" />
+                        </div>
+                        <div>
+                            <label class="form-label">Data de Nascimento *</label>
+                            <input id="campo-dep-nasc" type="date" required value="2026-06-10" class="form-control" />
+                        </div>
+                    </div>
+                `;
             } else {
                 textoInstrucoes.textContent = 'Benefício pecuniário mensal creditado na folha de pagamento do servidor em exercício regular.';
                 container.innerHTML = `
@@ -329,15 +427,44 @@
         }
 
         function selecionarArquivos(e) {
-            const files = Array.from(e.target.files);
+            processarArquivos(Array.from(e.target.files || []));
+        }
+
+        function processarArquivos(files) {
+            const extensoesPermitidas = ['pdf', 'png', 'jpg', 'jpeg'];
+
             files.forEach(f => {
-                arquivosSelecionados.push({
+                    const ext = f.name.split('.').pop().toLowerCase();
+                    if(!extensoesPermitidas.includes(ext)) {
+                    SGPD.toast(`Formato inválido (${f.name}). Envie PDF, PNG ou JPG.`, 'erro');
+                    return;
+                }
+                if (f.size > 10 * 1024 * 1024) {
+                    SGPD.toast(`Arquivo ${f.name} excede o limite de 10MB.`, 'erro');
+                    return;
+                }
+
+                const docObj = {
                     nome: f.name,
+                    tipoMime: f.type,
                     tamanho: (f.size / (1024 * 1024)).toFixed(2) + ' MB',
-                    hash: 'sha256-' + Math.random().toString(36).substring(2, 14) + Math.random().toString(36).substring(2, 14)
-                });
+            hash: 'sha256-' + Math.random().toString(36).substring(2, 14) + Math.random().toString(36).substring(2, 14),
+                previewUrl: null
+        };
+
+        // Armazena preview real em DataURL para arquivos pequenos (< 1.5MB)
+        if (f.size <= 1.5 * 1024 * 1024 && f.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                docObj.previewUrl = ev.target.result;
+            };
+            reader.readAsDataURL(f);
+        }
+
+        arquivosSelecionados.push(docObj);
             });
-            renderizarListaArquivos();
+
+        renderizarListaArquivos();
         }
 
         function renderizarListaArquivos() {
@@ -350,7 +477,7 @@
             box.innerHTML = arquivosSelecionados.map((a, idx) => `
                 <div class="flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs">
                     <div class="flex items-center gap-2 truncate">
-                        <i class="fa-solid fa-file-pdf text-rose-500"></i>
+                        <i class="fa-solid ${a.tipoMime && a.tipoMime.startsWith('image/') ? 'fa-file-image text-blue-500' : 'fa-file-pdf text-rose-500'}"></i>
                         <span class="font-medium text-slate-800 truncate">${a.nome}</span>
                         <span class="text-slate-400">(${a.tamanho})</span>
                     </div>
@@ -378,6 +505,7 @@
             }
 
             const tipo = document.getElementById('tipo-beneficio').value;
+            const prioridade = document.getElementById('prioridade-pedido').value;
             const justificativa = document.getElementById('justificativa').value;
             const usuario = SGPD.getUsuario();
 
@@ -386,19 +514,27 @@
                 detalhes = {
                     residencia: document.getElementById('campo-end')?.value || 'Brasília - DF',
                     modalidade: document.getElementById('campo-modalidade')?.value || 'Transporte Coletivo',
-                    tarifa: document.getElementById('campo-tarifa')?.value || 'R$ 11,00'
+                    tarifa: document.getElementById('campo-tarifa')?.value || 'R$ 11,00',
+                    regime: document.getElementById('campo-regime')?.value || 'Presencial'
                 };
             } else if (tipo === 'Adicional de Qualificação') {
                 detalhes = {
                     titulacao: document.getElementById('campo-grau')?.value || 'Especialização',
                     curso: document.getElementById('campo-curso')?.value || 'Curso Superior',
-                    instituicao: document.getElementById('campo-ies')?.value || 'Universidade'
+                    instituicao: document.getElementById('campo-ies')?.value || 'Universidade',
+                    conclusao: document.getElementById('campo-data-col')?.value || '2026'
                 };
             } else if (tipo === 'Licença Capacitação') {
                 detalhes = {
                     curso: document.getElementById('campo-lic-curso')?.value || 'Capacitação',
                     instituicao: document.getElementById('campo-lic-inst')?.value || 'ENAP',
+                    cargaHoraria: document.getElementById('campo-lic-ch')?.value || '60 horas',
                     periodo: document.getElementById('campo-lic-per')?.value || '30 dias'
+                };
+            } else if (tipo === 'Auxílio-Natalidade / Creche') {
+                detalhes = {
+                    dependente: document.getElementById('campo-dep-nome')?.value || 'Dependente',
+                    nascimento: document.getElementById('campo-dep-nasc')?.value || '2026'
                 };
             }
 
@@ -407,14 +543,15 @@
                 matricula: usuario.matricula,
                 lotacao: usuario.lotacao,
                 beneficio: tipo,
+                prioridade: prioridade,
                 justificativa: justificativa,
                 detalhes: detalhes,
                 docs: [...arquivosSelecionados]
             });
 
-            // Redireciona para o comprovante
             window.location.href = `comprovante.html?id=${novo.id}`;
         }
     </script>
 </body>
+
 </html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Painel da Chefia / Gestor • SGPD</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 flex flex-col min-h-screen">
+
+    <!-- Barra Governamental Superior -->
+    <div class="gov-top-bar">
+        <div class="gov-top-bar-inner">
+            <div class="gov-brand">
+                <span class="gov-flag-dot"></span>
+                <span>BRASIL</span>
+                <span style="opacity: 0.5; margin: 0 4px;">|</span>
+                <span style="font-weight: 400;" class="hidden sm:inline">Ministério da Gestão e da Inovação em Serviços Públicos</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="SGPD.resetarDados()" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i> <span class="hidden sm:inline">Resetar Demonstração</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="app-navbar">
+        <div class="sgpd-container">
+            <div class="app-navbar-inner">
+                
+                <a href="gestor.html" class="app-brand">
+                    <div class="app-logo-icon" style="background: linear-gradient(135deg, #059669, #065f46);">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <div class="app-brand-title">
+                            <span>SGPD</span>
+                            <span class="app-brand-badge" style="background-color: #d1fae5; color: #065f46;">Chefia</span>
+                        </div>
+                        <div class="app-brand-subtitle hidden sm:block">Homologação & Anuência da Unidade</div>
+                    </div>
+                </a>
+
+                <nav class="nav-links-desktop">
+                    <a href="gestor.html" class="nav-link active">
+                        <i class="fa-solid fa-signature"></i>
+                        <span>Homologações</span>
+                    </a>
+                    <a href="servidor.html" class="nav-link">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Servidor</span>
+                    </a>
+                    <a href="rh.html" class="nav-link">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>RH</span>
+                    </a>
+                    <a href="guia.html" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>Guia</span>
+                    </a>
+                </nav>
+
+                <div class="user-controls">
+                    <div class="quick-switcher">
+                        <button onclick="SGPD.alternarPerfil('servidor')" class="quick-switch-btn">Servidor</button>
+                        <button onclick="SGPD.alternarPerfil('rh')" class="quick-switch-btn">RH</button>
+                        <button onclick="SGPD.alternarPerfil('gestor')" class="quick-switch-btn active">Chefia</button>
+                    </div>
+
+                    <div id="notif-container"></div>
+
+                    <div class="hidden sm:block text-right">
+                        <div class="text-xs font-bold text-slate-800 leading-tight">Dr. Carlos Drummond</div>
+                        <div class="text-[10px] text-emerald-700 font-medium">SIAPE: 1049921 • Diretor</div>
+                    </div>
+
+                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-xs border border-emerald-200">
+                        CD
+                    </div>
+
+                    <button onclick="SGPD.logout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg transition" title="Sair do Sistema">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
+
+                    <button onclick="SGPD.toggleMobileMenu()" class="mobile-menu-btn" title="Abrir menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mobile-drawer" class="mobile-nav-drawer">
+            <div class="border-b border-slate-200 pb-2 mb-2">
+                <div class="text-xs font-bold text-slate-800">Dr. Carlos Drummond</div>
+                <div class="text-[11px] text-slate-500">Diretor de Gestão Estratégica • SIAPE 1049921</div>
+            </div>
+            <a href="gestor.html" class="mobile-nav-link active">
+                <i class="fa-solid fa-signature text-emerald-600"></i> Homologações da Unidade
+            </a>
+            <a href="servidor.html" class="mobile-nav-link">
+                <i class="fa-solid fa-user text-blue-600"></i> Painel do Servidor
+            </a>
+            <a href="rh.html" class="mobile-nav-link">
+                <i class="fa-solid fa-user-shield text-indigo-600"></i> Painel do RH
+            </a>
+            <a href="guia.html" class="mobile-nav-link">
+                <i class="fa-solid fa-book-bookmark text-slate-600"></i> Guia de Benefícios
+            </a>
+            <div class="pt-2 border-t border-slate-200 mt-2">
+                <button onclick="SGPD.logout()" class="btn btn-secondary w-full text-xs text-rose-600">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair da Conta
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 py-6">
+        <div class="sgpd-container space-y-6">
+
+            <!-- Banner da Chefia -->
+            <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 rounded-2xl p-5 sm:p-7 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-user-tie"></i> Chefia Imediata • Unidade DTI / PROPLAN
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Anuência e Homologação Gerencial</h1>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
+                        Acompanhe os afastamentos e benefícios da sua equipe, conceda anuência formal em licenças de capacitação e monitore indicadores da unidade.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Métricas da Unidade -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-wrap bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <div>
+                        <div id="stat-gestor-total" class="stat-val">0</div>
+                        <div class="stat-label">Processos da Unidade</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap bg-amber-50 text-amber-600">
+                        <i class="fa-solid fa-signature"></i>
+                    </div>
+                    <div>
+                        <div id="stat-gestor-pendentes" class="stat-val text-amber-600">0</div>
+                        <div class="stat-label">Aguardando Anuência</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap bg-emerald-50 text-emerald-600">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <div>
+                        <div id="stat-gestor-homologados" class="stat-val text-emerald-600">0</div>
+                        <div class="stat-label">Homologados / Anuídos</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap bg-blue-50 text-blue-600">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <div>
+                        <div id="stat-gestor-sla" class="stat-val text-blue-600">0d</div>
+                        <div class="stat-label">Tempo Médio na Unidade</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Processos da Equipe -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <h2 class="font-bold text-slate-800 text-sm sm:text-base">Requerimentos da Equipe (DTI / PROPLAN)</h2>
+                        <p class="text-xs text-slate-500">Processos que envolvem afastamento ou exigem ciência da chefia</p>
+                    </div>
+                    <select id="filtro-gestor" onchange="renderizarGestor()" class="form-control text-xs py-1.5 w-full sm:w-auto font-medium">
+                        <option value="todos">Todos os Processos</option>
+                        <option value="pendente">Aguardando Anuência</option>
+                        <option value="homologado">Já Homologados</option>
+                    </select>
+                </div>
+
+                <div id="lista-gestor" class="divide-y divide-slate-100 p-4 space-y-3">
+                    <!-- Renderizado via JS -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL DE ANUÊNCIA DA CHEFIA -->
+    <div id="modal-anuencia" class="modal-overlay">
+        <div class="modal-box max-w-lg">
+            <div class="p-4 sm:p-5 bg-emerald-900 text-white flex justify-between items-center rounded-t-2xl">
+                <div>
+                    <h3 class="text-base font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-signature text-emerald-300"></i> Manifestação da Chefia Imediata
+                    </h3>
+                    <p id="anuencia-nup" class="text-xs text-emerald-200 font-mono mt-0.5">SGPD-2026-0000</p>
+                </div>
+                <button onclick="fecharModalAnuencia()" class="text-emerald-200 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form onsubmit="confirmarAnuencia(event)" class="p-5 sm:p-6 space-y-4">
+                <input type="hidden" id="anuencia-id" />
+
+                <div>
+                    <label class="form-label text-xs uppercase font-bold text-slate-600">Decisão da Chefia <span class="required">*</span></label>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <label class="flex flex-col p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50">
+                            <input type="radio" name="anuencia-decisao" value="sim" checked class="hidden" />
+                            <span class="text-emerald-700 font-bold text-xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check"></i> Conceder Anuência
+                            </span>
+                            <span class="text-[11px] text-slate-500 mt-0.5">Atestar correlação e liberar trâmite ao RH</span>
+                        </label>
+                        <label class="flex flex-col p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-rose-500 transition has-[:checked]:border-rose-600 has-[:checked]:bg-rose-50">
+                            <input type="radio" name="anuencia-decisao" value="nao" class="hidden" />
+                            <span class="text-rose-700 font-bold text-xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-rotate-left"></i> Devolver ao Servidor
+                            </span>
+                            <span class="text-[11px] text-slate-500 mt-0.5">Solicitar ajuste de período/plano</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-0">
+                    <label class="form-label text-xs uppercase font-bold text-slate-600">Despacho de Anuência / Justificativa <span class="required">*</span></label>
+                    <textarea id="anuencia-texto" required rows="3" class="form-control text-xs">Atesto o alinhamento da capacitação com o Plano de Desenvolvimento de Pessoas (PDP) da unidade e manifesto concordância com o afastamento no período solicitado, sem prejuízo às atividades essenciais da DTI.</textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="fecharModalAnuencia()" class="btn btn-secondary text-xs">Cancelar</button>
+                    <button type="submit" class="btn btn-success text-xs font-bold">
+                        <i class="fa-solid fa-check"></i> Assinar Manifestação
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        <div class="sgpd-container flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span><strong>SGPD v3.0</strong> — Sistema de Gestão de Processos Digitais</span>
+            <span>Conformidade Lei nº 14.129/2021 • Dados persistidos localmente</span>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            SGPD.setPerfil('gestor');
+            renderizarGestor();
+        });
+
+        function renderizarGestor() {
+            const processos = SGPD.getProcessos();
+            const filtro = document.getElementById('filtro-gestor').value;
+
+            const pendentes = processos.filter(p => p.anuenciaChefia === false).length;
+            const homologados = processos.filter(p => p.anuenciaChefia !== false).length;
+
+            const slas = processos.map(p => SGPD.getSlaDias(p.data));
+            const mediaSla = slas.length ? Math.round(slas.reduce((a, b) => a + b, 0) / slas.length) : 0;
+
+            document.getElementById('stat-gestor-total').textContent = processos.length;
+            document.getElementById('stat-gestor-pendentes').textContent = pendentes;
+            document.getElementById('stat-gestor-homologados').textContent = homologados;
+            document.getElementById('stat-gestor-sla').textContent = `${mediaSla}d`;
+
+            let lista = [...processos];
+            if (filtro === 'pendente') lista = lista.filter(p => p.anuenciaChefia === false);
+            if (filtro === 'homologado') lista = lista.filter(p => p.anuenciaChefia !== false);
+
+            const container = document.getElementById('lista-gestor');
+            if (lista.length === 0) {
+                container.innerHTML = '<div class="p-8 text-center text-xs text-slate-400">Nenhum processo encontrado neste filtro.</div>';
+                return;
+            }
+
+            container.innerHTML = lista.map(p => {
+                const precisaAnuencia = p.anuenciaChefia === false;
+                return `
+                    <div class="p-4 rounded-xl border ${precisaAnuencia ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200 bg-white'} flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div class="space-y-1 flex-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="font-mono font-bold text-slate-900 text-sm">${p.protocolo}</span>
+                                <span class="${SGPD.getBadgeClass(p.status)}">${SGPD.getStatusIcon(p.status)} ${p.status}</span>
+                                ${precisaAnuencia
+                                    ? `<span class="badge-urgente"><i class="fa-solid fa-signature"></i> Pendente Anuência</span>`
+                                    : `<span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"><i class="fa-solid fa-check"></i> Homologado pela Chefia</span>`
+                                }
+                            </div>
+                            <div class="text-sm font-bold text-slate-800">${p.beneficio} — <span class="font-normal text-slate-600">${p.servidor}</span></div>
+                            <p class="text-xs text-slate-500 line-clamp-2">"${p.justificativa}"</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 w-full md:w-auto justify-end">
+                            <a href="processo.html?id=${p.id}" class="btn btn-secondary btn-sm text-xs">
+                                <i class="fa-regular fa-folder-open"></i> Dossiê
+                            </a>
+                            ${precisaAnuencia ? `
+                                <button onclick="abrirModalAnuencia(${p.id})" class="btn btn-success btn-sm text-xs font-bold">
+                                    <i class="fa-solid fa-signature"></i> Emitir Anuência
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function abrirModalAnuencia(id) {
+            const p = SGPD.getProcessoPorId(id);
+            if (!p) return;
+            document.getElementById('anuencia-id').value = p.id;
+            document.getElementById('anuencia-nup').textContent = `${p.protocolo} • ${p.beneficio}`;
+            document.getElementById('modal-anuencia').classList.add('active');
+        }
+
+        function fecharModalAnuencia() {
+            document.getElementById('modal-anuencia').classList.remove('active');
+        }
+
+        function confirmarAnuencia(e) {
+            e.preventDefault();
+            const id = document.getElementById('anuencia-id').value;
+            const texto = document.getElementById('anuencia-texto').value;
+            const radios = document.getElementsByName('anuencia-decisao');
+            let aprovado = true;
+            for (const r of radios) {
+                if (r.checked) aprovado = r.value === 'sim';
+            }
+
+            SGPD.homologarProcesso(id, aprovado, texto);
+            fecharModalAnuencia();
+            renderizarGestor();
+            SGPD.toast(aprovado ? 'Anuência concedida e encaminhada ao RH!' : 'Processo devolvido ao servidor.', aprovado ? 'sucesso' : 'alerta');
+        }
+    </script>
+</body>
+</html>
